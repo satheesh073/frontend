@@ -118,9 +118,9 @@ export class TcrComponent {
     this.batteryLevel = '12';
 
     this.gatewayId = 'ASSETLINK_TCR_109_001';
-    this.deviceId = 'Kamalesh-TCR'; //3654
+    this.deviceId = 'ANANTHI-TCR'; //3654
     this.system = 'HCI';
-    this.esn = 'Kamalesh-TCR';
+    this.esn = 'ANANTHI-TCR';
     this.lasttxtime = '';
     this.latitude = '18.98367';
     this.longitude = '29.72933';
