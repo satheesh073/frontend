@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body class="mt-4">
+    <!-- constant -->
+    <section class="ml-[17em] mt-4 container h-[23em]" id="constant">
+      <div class="mt-4 ml-4">
+        <h2 class="logo text-[25px] text-[#6B9080]">Data Section</h2>
+        <div class="flex">
+          <div class="w-1/2 ml-20">
+            <div class="flex mt-5 ml-5">
+              <label
+                class="logo text-[20px] mt-3 text-[#073b4c]"
+                for="gatewayId"
+                >Gateway ID :</label
+              >
+              <div class="relative inline-block mt-2 ml-3">
+                <input
+                  class="px-4 py-2 rounded-2xl font-semibold background text-[#6B9080] text-center cursor-text border-gray-300 focus:outline-none"
+                  id="gatewayId"
+                  type="text"
+                  [(ngModel)]="gatewayId"
+                  placeholder="Gateway ID"
+                />
+              </div>
+            </div>
+            <div class="flex mt-5 ml-[2.6em]">
+              <label class="logo text-[20px] mt-3 text-[#073b4c]" for="deviceid"
+                >Device ID :</label
+              >
+              <div class="relative inline-block mt-2 ml-3 text-left">
+                <input
+                  class="px-4 py-2 rounded-2xl background2 text-[#6B9080] font-semibold text-center cursor-text focus:outline-none"
+                  id="deviceid"
+                  type="text"
+                  [(ngModel)]="deviceId"
+                  placeholder="Device ID"
+                />
+              </div>
+            </div>
+            <div class="flex mt-5 ml-[3.7em]">
+              <label class="logo text-[20px] mt-3 text-[#073b4c]" for="system"
+                >System :</label
+              >
+              <div class="relative inline-block mt-2 ml-3">
+                <input
+                  class="px-4 py-2 rounded-2xl font-semibold background text-[#6B9080] text-center cursor-text border-gray-300 focus:outline-none"
+                  id="system"
+                  type="text"
+                  [(ngModel)]="system"
+                  placeholder="System"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="w-1/2 mt-5">
+            <div class="flex justify-center ml-20">
+              <label class="logo text-[20px] mt-3 text-[#073b4c]" for="esn"
+                >ESN :</label
+              >
+              <div class="relative inline-block mt-2 ml-3 text-left">
+                <input
+                  class="px-4 py-2 rounded-2xl background1 alert text-[#6B9080] font-semibold text-center cursor-text focus:outline-none"
+                  id="esn"
+                  type="text"
+                  [(ngModel)]="esn"
+                  placeholder="ESN"
+                />
+              </div>
+            </div>
+            <div class="flex justify-center mt-5">
+              <label
+                class="logo text-[20px] mt-3 text-[#073b4c]"
+                for="lasttxtime"
+                >Last TX Time :</label
+              >
+              <div class="relative inline-block mt-2 ml-3 text-left">
+                <input
+                  class="px-4 py-2 rounded-2xl background3 text-[#6B9080] font-semibold text-center cursor-text focus:outline-none"
+                  id="lasttxtime"
+                  type="text"
+                  [(ngModel)]="lasttxtime"
+                  placeholder="Last TX Time"
+                />
+              </div>
+            </div>
+            <div class="mt-5 ml-[6.5em]">
+              <div class="flex">
+                <h3 class="logo text-[20px] mt-3 text-[#073b4c]">
+                  Last Known Location :
+                </h3>
+                <div class="relative inline-block mt-2 ml-3">
+                  <input
+                    id="latitudeInput"
+                    [(ngModel)]="latitude"
+                    class="px-4 py-2 rounded-2xl font-semibold background text-[#6B9080] text-center cursor-text border-gray-300 focus:outline-none"
+                    placeholder="Enter Latitude"
+                  />
+                </div>
+              </div>
+              <div class="relative inline-block mt-7 ml-[13em]">
+                <input
+                  id="longitudeInput"
+                  [(ngModel)]="longitude"
+                  class="px-4 py-2 rounded-2xl font-semibold background text-[#6B9080] text-center cursor-text border-gray-300 focus:outline-none"
+                  placeholder="Enter longitude"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Input fields for editable data -->
+      </div>
+    </section>
+    <!-- temperatureview  -->
+
+    <section class="ml-[17em] mt-4 container pb-14" id="temperatureview">
+      <div class="mt-4 ml-4">
+        <h2 class="logo text-[25px] text-[#6B9080]">Temperature View</h2>
+        <div class="flex ml-36">
+          <h3 class="logo text-[20px] mt-7 mb-7 text-[#073b4c]">
+            Primary System :
+          </h3>
+          <div class="relative inline-block mt-6 text-left ml-7">
+            <input
+              type="text"
+              id="primarySystem"
+              class="px-4 py-2 rounded-2xl back primarysystem text-[#6B9080] font-semibold text-center cursor-pointer focus:outline-none"
+              (click)="togglePrimarySystemDropdown()"
+              placeholder="Primary System"
+              [value]="selectedSystem || ''"
+              readonly
+            />
+            <div
+              class="absolute inset-y-0 right-0 flex items-center px-2 mt-[-1em] mr-3 pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <g fill="none" fill-rule="evenodd">
+                  <path
+                    d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"
+                  />
+                  <path
+                    fill="#6B9080"
+                    d="M13.06 16.06a1.5 1.5 0 0 1-2.12 0l-5.658-5.656a1.5 1.5 0 1 1 2.122-2.121L12 12.879l4.596-4.596a1.5 1.5 0 0 1 2.122 2.12l-5.657 5.658Z"
+                  />
+                </g>
+              </svg>
+            </div>
+            <div
+              *ngIf="isPrimarySystemDropdownOpen"
+              class="absolute z-[1] w-48 py-2 mt-2 font-medium bg-white border-gray-300 rounded-md shadow-md dropdown-content9"
+            >
+              <a
+                (click)="selectSystem('System1')"
+                class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+                >SYSTEM 1</a
+              >
+              <a
+                (click)="selectSystem('System2')"
+                class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+                >SYSTEM 2</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Primary System -->
+      <div class="ml-20">
+        <h2 class="logo text-[23px] text-[#6B9080]">Primary System</h2>
+        <div class="flex mt-5">
+          <div class="flex ml-10">
+            <h3
+              class="mt-5 text-[#073b4c] logo text-[18px] tracking-wider font-extrabold"
+            >
+              Set Point Temperature :
+            </h3>
+            <input
+              type="text"
+              id="setPointTemperatureInput"
+              [(ngModel)]="setpointP"
+              class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+              placeholder="in ` C"
+            />
+            <h3
+              class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+            >
+              C
+            </h3>
+          </div>
+
+          <div class="flex ml-36">
+            <h3
+              class="mt-5 text-[#073b4c] logo text-[18px] tracking-wider font-extrabold"
+            >
+              Return Temperature :
+            </h3>
+            <input
+              type="text"
+              id="returnTemperatureInput"
+              [(ngModel)]="returnpointP"
+              class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+              placeholder="in ` C"
+            />
+            <h3
+              class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+            >
+              C
+            </h3>
+          </div>
+          <div class="flex ml-28">
+            <h3
+              class="mt-5 text-[#073b4c] logo text-[18px] tracking-wider font-extrabold"
+            >
+              Supply Temperature :
+            </h3>
+            <input
+              type="text"
+              id="supplyTemperatureInput"
+              [(ngModel)]="supplypointP"
+              class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+              placeholder="in ` C"
+            />
+            <h3
+              class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+            >
+              C
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary System  -->
+
+      <div class="ml-20 mt-7">
+        <h2 class="logo text-[23px] text-[#6B9080]">Secondary System</h2>
+        <div class="flex">
+          <div class="flex mt-5 ml-10">
+            <h3
+              class="mt-5 text-[#073b4c] logo text-[18px] tracking-wider font-extrabold"
+            >
+              Set Point Temperature :
+            </h3>
+            <input
+              type="text"
+              id="setPointTemperatureInput1"
+              [(ngModel)]="setpointS"
+              class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+              placeholder="in ` C"
+            />
+            <h3
+              class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+            >
+              C
+            </h3>
+          </div>
+
+          <div class="flex mt-5 ml-36">
+            <h3
+              class="mt-5 text-[#073b4c] logo text-[18px] tracking-wider font-extrabold"
+            >
+              Return Temperature :
+            </h3>
+            <input
+              type="text"
+              [(ngModel)]="returnpointS"
+              id="returnTemperatureInput1"
+              class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+              placeholder="in ` C"
+            />
+            <h3
+              class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+            >
+              C
+            </h3>
+          </div>
+
+          <div class="flex mt-5 ml-28">
+            <h3
+              class="mt-5 text-[#073b4c] logo text-[18px] tracking-wider font-extrabold"
+            >
+              Supply Temperature :
+            </h3>
+            <input
+              type="text"
+              [(ngModel)]="supplypointS"
+              id="supplyTemperatureInput1"
+              class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+              placeholder="in ` C"
+            />
+            <h3
+              class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+            >
+              C
+            </h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Set Operation -->
+
+    <section class="ml-[17em] mt-4 container pb-14" id="setoperation">
+      <div class="mt-4 ml-4">
+        <h2 class="logo text-[25px] text-[#6B9080]">Set Operation</h2>
+        <div class="mt-4">
+          <div class="ml-10">
+            <div class="flex ml-10">
+              <h3
+                class="mt-5 text-[#073b4c] logo text-[20px] tracking-wider font-extrabold"
+              >
+                Ambient Temperature :
+              </h3>
+              <input
+                id="ambientTemperatureInput"
+                type="text"
+                [(ngModel)]="ambientTemperature"
+                class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+                placeholder="in ` C"
+              />
+              <h3
+                class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+              >
+                C
+              </h3>
+            </div>
+          </div>
+          <div class="flex">
+            <div class="w-1/2 mt-5">
+              <div class="flex justify-center ml-[-2.5em]">
+                <h3 class="logo text-[20px] mt-3 text-[#073b4c]">
+                  Operation Mode (P) :
+                </h3>
+                <div class="relative inline-block mt-2 ml-3 text-left">
+                  <input
+                    type="text"
+                    id="operationModePInput"
+                    class="px-4 py-2 rounded-2xl back operation-p text-[#6B9080] font-semibold text-center cursor-pointer focus:outline-none"
+                    (click)="toggleOperationModeDropdown()"
+                    [value]="selectedOperationModeP || ''"
+                    placeholder="Operation Mode"
+                    readonly
+                  />
+                  <div
+                    class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <g fill="none" fill-rule="evenodd">
+                        <path
+                          d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"
+                        />
+                        <path
+                          fill="#6B9080"
+                          d="M13.06 16.06a1.5 1.5 0 0 1-2.12 0l-5.658-5.656a1.5 1.5 0 1 1 2.122-2.121L12 12.879l4.596-4.596a1.5 1.5 0 0 1 2.122 2.12l-5.657 5.658Z"
+                        />
+                      </g>
+                    </svg>
+                  </div>
+                  <div
+                    *ngIf="isOperationModeDropdownOpen"
+                    class="absolute z-[1] w-48 py-2 mt-2 font-medium bg-white border-gray-300 rounded-md shadow-md dropdown-content5"
+                  >
+                    <a
+                      (click)="selectOperationMode('Cooling')"
+                      class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+                      >Cooling</a
+                    >
+                    <a
+                      (click)="selectOperationMode('Heating')"
+                      class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+                      >Heating</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-center mt-5 ml-[-12em]">
+                <h3 class="logo text-[20px] mt-5 text-[#073b4c]">
+                  Operation Hours (P) :
+                </h3>
+                <input
+                  type="text"
+                  id="operationHoursPInput"
+                  [(ngModel)]="OperationHoursP"
+                  class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+                  placeholder="in ` C"
+                />
+                <h3
+                  class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+                >
+                  C
+                </h3>
+              </div>
+            </div>
+            <div class="w-1/2 mt-5">
+              <div class="flex justify-center ml-[-2.5em]">
+                <h3 class="logo text-[20px] mt-3 text-[#073b4c]">
+                  Operation Mode (S) :
+                </h3>
+                <div class="relative inline-block mt-2 ml-3 text-left">
+                  <input
+                    type="text"
+                    id="operationModeSInput"
+                    class="px-4 py-2 rounded-2xl back operation-s text-[#6B9080] font-semibold text-center cursor-pointer focus:outline-none"
+                    (click)="toggleOperationModeDropdown1()"
+                    [value]="selectedOperationModeS || ''"
+                    placeholder="Operation Mode"
+                    readonly
+                  />
+                  <div
+                    class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <g fill="none" fill-rule="evenodd">
+                        <path
+                          d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"
+                        />
+                        <path
+                          fill="#6B9080"
+                          d="M13.06 16.06a1.5 1.5 0 0 1-2.12 0l-5.658-5.656a1.5 1.5 0 1 1 2.122-2.121L12 12.879l4.596-4.596a1.5 1.5 0 0 1 2.122 2.12l-5.657 5.658Z"
+                        />
+                      </g>
+                    </svg>
+                  </div>
+                  <div
+                    *ngIf="isOperationModeDropdownOpenS"
+                    class="absolute z-[1] w-48 py-2 mt-2 font-medium bg-white border-gray-300 rounded-md shadow-md dropdown-content6"
+                  >
+                    <a
+                      (click)="selectOperationModeS('Cooling')"
+                      class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+                      >Cooling</a
+                    >
+                    <a
+                      (click)="selectOperationModeS('Heating')"
+                      class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+                      >Heating</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-center mt-5 ml-[-12em]">
+                <h3 class="logo text-[20px] mt-5 text-[#073b4c]">
+                  Operation Hours (S) :
+                </h3>
+                <input
+                  type="text"
+                  id="operationHoursSInput"
+                  [(ngModel)]="OperationHoursS"
+                  class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+                  placeholder="in ` C"
+                />
+                <h3
+                  class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+                >
+                  C
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- supply -->
+
+    <section class="ml-[17em] flex mt-4" id="supply">
+      <!-- supply  -->
+
+      <section class="container relative w-1/2 pb-10 mr-5">
+        <div class="mt-4 ml-7">
+          <h2 class="logo text-[25px] text-[#6B9080]">Supply</h2>
+          <div class="mt-4 ml-20">
+            <div class="flex ml-9">
+              <h3
+                class="mt-5 text-[#073b4c] logo text-[20px] tracking-wider font-extrabold"
+              >
+                Supply Temperature MAX :
+              </h3>
+              <input
+                type="text"
+                id="supplyTemperatureMaxInput"
+                [(ngModel)]="supplytempmax"
+                class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+                placeholder="in ` C"
+              />
+              <h3
+                class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+              >
+                C
+              </h3>
+            </div>
+            <div class="flex mt-5 ml-10">
+              <h3
+                class="mt-5 text-[#073b4c] logo text-[20px] tracking-wider font-extrabold"
+              >
+                Supply Temperature MIN :
+              </h3>
+              <input
+                type="text"
+                id="supplyTemperatureMinInput"
+                [(ngModel)]="supplytempmin"
+                class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+                placeholder="in ` C"
+              />
+              <h3
+                class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+              >
+                C
+              </h3>
+            </div>
+            <div class="flex mt-5 ml-5">
+              <h3
+                class="mt-5 text-[#073b4c] logo text-[20px] tracking-wider font-extrabold"
+              >
+                Supply Temperature MEAN :
+              </h3>
+              <input
+                type="text"
+                id="supplyTemperatureMeanInput"
+                [(ngModel)]="supplytempmean"
+                class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+                placeholder="in ` C"
+              />
+              <h3
+                class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+              >
+                C
+              </h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- return  -->
+
+      <section class="ml-7 mr-16 container relative w-1/2 z-[1] pb-10">
+        <div class="mt-4 ml-4">
+          <h2 class="logo text-[25px] text-[#6B9080]">Return</h2>
+          <div class="mt-4 ml-20">
+            <div class="flex ml-8">
+              <h3
+                class="mt-5 text-[#073b4c] logo text-[20px] tracking-wider font-extrabold"
+              >
+                Return Temperature MAX :
+              </h3>
+              <input
+                type="text"
+                id="returnTemperatureMaxInput"
+                [(ngModel)]="returntempmax"
+                class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+                placeholder="in ` C"
+              />
+              <h3
+                class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+              >
+                C
+              </h3>
+            </div>
+            <div class="flex mt-5 ml-10">
+              <h3
+                class="mt-5 text-[#073b4c] logo text-[20px] tracking-wider font-extrabold"
+              >
+                Return Temperature MIN :
+              </h3>
+              <input
+                type="text"
+                id="returnTemperatureMinInput"
+                [(ngModel)]="returntempmin"
+                class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+                placeholder="in ` C"
+              />
+              <h3
+                class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+              >
+                C
+              </h3>
+            </div>
+            <div class="flex mt-5 ml-5">
+              <h3
+                class="mt-5 text-[#073b4c] logo text-[20px] tracking-wider font-extrabold"
+              >
+                Return Temperature MEAN :
+              </h3>
+              <input
+                type="text"
+                id="returnTemperatureMeanInput"
+                [(ngModel)]="returntempmean"
+                class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none h-14 w-20"
+                placeholder="in ` C"
+              />
+              <h3
+                class="mt-5 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+              >
+                C
+              </h3>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Utilization View -->
+
+    <section class="ml-[17em] mt-4 container relative pb-10" id="Utilization">
+      <div class="mt-4 ml-4">
+        <h2 class="logo text-[25px] text-[#6B9080]">Utilization</h2>
+        <div class="flex">
+          <div class="w-1/2 ml-48">
+            <div class="flex ml-5">
+              <h3 class="logo text-[20px] mt-3 text-[#073b4c]">Fuel Level :</h3>
+              <div class="relative inline-block mt-2 ml-3 text-left">
+                <input
+                  type="text"
+                  id="fuelLevelInput"
+                  [(ngModel)]="fuellevel"
+                  class="px-4 py-2 rounded-lg background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none"
+                  placeholder="Fuel Level"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="hidden w-1/2 ml-48">
+            <div class="flex ml-5">
+              <h3 class="logo text-[20px] mt-3 text-[#073b4c]">GateWayId:</h3>
+              <div class="relative inline-block mt-2 ml-3 text-left">
+                <input
+                  type="text"
+                  id="GateWayIdInput"
+                  class="px-4 py-2 rounded-lg background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none"
+                  placeholder="Fuel Level"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- setmode  -->
+    <section class="ml-[17em] mt-4 container relative z-[1] pb-10" id="Alert1">
+      <h2 class="logo text-[25px] text-[#6B9080] pt-5 pl-5">Reefer Mode</h2>
+      <div class="flex ml-[13em] z-[1]">
+        <h3 class="logo text-[20px] mt-3 text-[#073b4c]">Set Mode :</h3>
+        <div class="relative inline-block mt-2 ml-3 text-left">
+          <input
+            type="text"
+            id="Mode Input"
+            class="px-4 py-2 rounded-2xl background mode text-[#6B9080] font-semibold text-center cursor-pointer focus:outline-none"
+            (click)="toggleReeferModeDropdown()"
+            [value]="selectedReeferMode || ''"
+            placeholder="Reefer Mode"
+            readonly
+          />
+          <div
+            class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <g fill="none" fill-rule="evenodd">
+                <path
+                  d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"
+                />
+                <path
+                  fill="#6B9080"
+                  d="M13.06 16.06a1.5 1.5 0 0 1-2.12 0l-5.658-5.656a1.5 1.5 0 1 1 2.122-2.121L12 12.879l4.596-4.596a1.5 1.5 0 0 1 2.122 2.12l-5.657 5.658Z"
+                />
+              </g>
+            </svg>
+          </div>
+          <div
+            *ngIf="isReeferModeDropdownOpen"
+            class="absolute z-[1] w-[30em] py-2 mt-2 font-medium bg-white border-gray-300 rounded-md shadow-md dropdown-content10"
+          >
+            <a
+              class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+              (click)="selectReeferMode('2')"
+              >2) MOTION: STATIONARY, BATTERY: NORMAL, REFRIGERATOR STATUS: ON
+            </a>
+            <a
+              class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+              (click)="selectReeferMode('4')"
+              >4) MOTION: IN MOTION, BATTERY: NORMAL, REFRIGERATOR STATUS: ON
+            </a>
+            <a
+              class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+              (click)="selectReeferMode('7')"
+              >7) MOTION:STATIONARY, BATTERY: NORMAL, REFRIGERATOR STATUS: ON
+            </a>
+            <a
+              class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+              (click)="selectReeferMode('6')"
+              >6) MOTION: STATIONARY, BATTERY: NORMAL,
+              REFRIGERATORSTATUS:SWITCHED OFF TIMED
+            </a>
+            <a
+              class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+              (click)="selectReeferMode('10')"
+              >10) MOTION : STATIONARY , BATTERY : NORMAL , REFRIGERATOR STATUS
+              : OFF
+            </a>
+            <a
+              class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+              (click)="selectReeferMode('11')"
+              >11) MOTION : STATIONARY , BATTERY : POWERSAVE ,REFRIGERATOR
+              STATUS : OFF
+            </a>
+            <a
+              class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+              (click)="selectReeferMode('12')"
+              >12) MOTION : IN MOTION , BATTERY : NORMAL , REFRIGERATOR STATUS :
+              OFF
+            </a>
+            <a
+              class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+              (click)="selectReeferMode('13')"
+              >13) MOTION : IN MOTION , BATTERY : POWER SAVE ,REFRIGERATOR
+              STATUS : OFF
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inventory -->
+
+    <section class="ml-[17em] mt-4 mb-4 container h-[12em]" id="inventory">
+      <div class="mt-4 ml-4">
+        <h2 class="logo text-[25px] text-[#6B9080]">Inventory</h2>
+        <div class="flex">
+          <div class="w-1/2 ml-20">
+            <div class="flex mt-5 ml-[8.2em]">
+              <h3 class="logo text-[20px] mt-3 text-[#073b4c]">Ingress :</h3>
+              <div class="relative inline-block mt-2 ml-3 text-left">
+                <input
+                  type="text"
+                  id="ingressInput"
+                  class="px-4 py-2 rounded-2xl background ingress text-[#6B9080] font-semibold text-center cursor-pointer focus:outline-none"
+                  (click)="toggleIngressDropdown()"
+                  [value]="selectedIngress || ''"
+                  placeholder="Motion Status"
+                  readonly
+                />
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <g fill="none" fill-rule="evenodd">
+                      <path
+                        d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"
+                      />
+                      <path
+                        fill="#6B9080"
+                        d="M13.06 16.06a1.5 1.5 0 0 1-2.12 0l-5.658-5.656a1.5 1.5 0 1 1 2.122-2.121L12 12.879l4.596-4.596a1.5 1.5 0 0 1 2.122 2.12l-5.657 5.658Z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <div
+                  *ngIf="isIngressDropdownOpen"
+                  class="absolute w-48 py-2 mt-2 z-[2] top-[-3em] right-[-12.2em] font-medium bg-white border-gray-300 rounded-md shadow-md dropdown-content7"
+                >
+                  <a
+                    (click)="selectIngress('TCP')"
+                    class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+                    >TCP</a
+                  >
+                  <a
+                    (click)="selectIngress('UDP')"
+                    class="block px-4 py-3 text-gray-800 cursor-pointer hover:bg-gray-200"
+                    >UDP</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-1/2">
+            <div class="flex mt-5 ml-8">
+              <h3 class="logo text-[20px] mt-3 ml-12 text-[#073b4c]">
+                Battery Level :
+              </h3>
+              <input
+                type="text"
+                [(ngModel)]="batteryLevel"
+                id="batteryLevelInput"
+                class="px-4 py-2 ml-3 mt-2 rounded-md background text-[#6B9080] font-semibold text-center cursor-text focus:outline-none w-20"
+                placeholder="in ` V"
+              />
+              <h3
+                class="mt-4 text-[#073b4c] ml-3 logo text-[18px] tracking-wider font-extrabold"
+              >
+                V
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alert1  -->
+
+    <section class="ml-[17em] z-[0] mt-4 container relative pb-10" id="Alert">
+      <div class="mt-4 ml-4">
+        <h2 class="logo text-[25px] text-[#6B9080]">Alert 1</h2>
+        <div class="flex">
+          <div class="w-1/2 pr-32 ml-20 space-y-7">
+            <label for="checkbox1" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox1"
+                [(ngModel)]="alert1[0]"
+              /><span class="text-[#2a9d8f]">(A01)</span> Glycol sensor short </label
+            ><br />
+            <label for="checkbox2" class="logo text-[20px] text-[rgb(7,59,76)]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox2"
+                [(ngModel)]="alert1[1]"
+              /><span class="text-[#2a9d8f]">(A02)</span> Glycol sensor open </label
+            ><br />
+            <label for="checkbox3" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox3"
+                [(ngModel)]="alert1[2]"
+              /><span class="text-[#2a9d8f]">(A03)</span> Cargo sensor short </label
+            ><br />
+            <label for="checkbox4" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox4"
+                [(ngModel)]="alert1[3]"
+              /><span class="text-[#2a9d8f]">(A04)</span> Cargo sensor open </label
+            ><br />
+            <label for="checkbox5" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox5"
+                [(ngModel)]="alert1[4]"
+              /><span class="text-[#2a9d8f]">(A05)</span> Heater sensor short </label
+            ><br />
+            <label for="checkbox6" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox6"
+                [(ngModel)]="alert1[5]"
+              /><span class="text-[#2a9d8f]">(A06)</span> Heater sensor open </label
+            ><br />
+            <label for="checkbox7" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox7"
+                [(ngModel)]="alert1[6]"
+              /><span class="text-[#2a9d8f]">(A07)</span> Compressor sensor
+              short </label
+            ><br />
+            <label for="checkbox8" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox8"
+                [(ngModel)]="alert1[7]"
+              /><span class="text-[#2a9d8f]">(A08)</span> Compressor sensor open </label
+            ><br />
+          </div>
+
+          <div class="w-1/2 pr-32 ml-20 space-y-7">
+            <label for="checkbox9" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                [(ngModel)]="alert1[8]"
+                id="checkbox9"
+              /><span class="text-[#2a9d8f]">(A09)</span> Pressure transmitter
+              out of range </label
+            ><br />
+            <label for="checkbox10" class="logo text-[20px] text-[rgb(7,59,76)]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox10"
+                [(ngModel)]="alert1[9]"
+              />For Future</label
+            ><br />
+            <label for="checkbox11" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox11"
+                [(ngModel)]="alert1[10]"
+              /><span class="text-[#2a9d8f]">(A11)</span> Phase Sensor fail </label
+            ><br />
+            <label for="checkbox12" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox12"
+                [(ngModel)]="alert1[11]"
+              />For Future</label
+            ><br />
+            <label for="checkbox13" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                [(ngModel)]="alert1[12]"
+                id="checkbox13"
+              />For Future</label
+            ><br />
+            <label for="checkbox14" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox14"
+                [(ngModel)]="alert1[13]"
+              /><span class="text-[#2a9d8f]">(A14)</span> Low Current on
+              Evaporator fan </label
+            ><br />
+            <label for="checkbox15" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox15"
+                [(ngModel)]="alert1[14]"
+              /><span class="text-[#2a9d8f]">(A15)</span> High current on pump
+              motor </label
+            ><br />
+            <label for="checkbox16" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox16"
+                [(ngModel)]="alert1[15]"
+              /><span class="text-[#2a9d8f]">(A16)</span> Low current on
+              condenser fan </label
+            ><br />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alert2  -->
+
+    <section class="ml-[17em] mt-4 container relative pb-10" id="Alert1">
+      <div class="mt-4 ml-4">
+        <h2 class="logo text-[25px] text-[#6B9080]">Alert 2</h2>
+        <div class="flex">
+          <div class="w-1/2 pr-32 ml-20 space-y-7">
+            <label for="checkbox17" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                [(ngModel)]="alert2[0]"
+                id="checkbox17"
+              /><span class="text-[#2a9d8f]">(A17)</span> High Current on
+              condenser fan </label
+            ><br />
+            <label for="checkbox18" class="logo text-[20px] text-[rgb(7,59,76)]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                [(ngModel)]="alert2[1]"
+                id="checkbox18"
+              /><span class="text-[#2a9d8f]">(A18)</span> Low current on
+              Compressor </label
+            ><br />
+            <label for="checkbox19" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox19"
+                [(ngModel)]="alert2[2]"
+              /><span class="text-[#2a9d8f]">(A19)</span> High current on
+              Compressor </label
+            ><br />
+            <label for="checkbox20" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox20"
+                [(ngModel)]="alert2[3]"
+              />For Future</label
+            ><br />
+            <label for="checkbox21" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox21"
+                [(ngModel)]="alert2[4]"
+              /><span class="text-[#2a9d8f]">(A21)</span> Different current on
+              pump motor </label
+            ><br />
+            <label for="checkbox22" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox22"
+                [(ngModel)]="alert2[5]"
+              /><span class="text-[#2a9d8f]">(A22)</span> Different current on
+              condenser fan </label
+            ><br />
+            <label for="checkbox23" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox23"
+                [(ngModel)]="alert2[6]"
+              /><span class="text-[#2a9d8f]">(A23)</span> Different current on
+              Compressor </label
+            ><br />
+            <label for="checkbox24" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox24"
+                [(ngModel)]="alert2[7]"
+              /><span class="text-[#2a9d8f]">(A24)</span> Compressor unbound
+              Fail </label
+            ><br />
+          </div>
+
+          <div class="w-1/2 pr-32 ml-20 space-y-7">
+            <label for="checkbox25" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox25"
+                [(ngModel)]="alert2[8]"
+              />For Future</label
+            ><br />
+            <label for="checkbox26" class="logo text-[20px] text-[rgb(7,59,76)]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox26"
+                [(ngModel)]="alert2[9]"
+              />For Future</label
+            ><br />
+            <label for="checkbox27" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox27"
+                [(ngModel)]="alert2[10]"
+              />For future</label
+            ><br />
+            <label for="checkbox28" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox28"
+                [(ngModel)]="alert2[11]"
+              />For Future</label
+            ><br />
+            <label for="checkbox29" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox29"
+                [(ngModel)]="alert2[12]"
+              /><span class="text-[#2a9d8f]">(A29)</span> Temp sensor difference
+              too large under test </label
+            ><br />
+            <label for="checkbox30" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox30"
+                [(ngModel)]="alert2[13]"
+              /><span class="text-[#2a9d8f]">(A30)</span> Container temp too low </label
+            ><br />
+            <label for="checkbox31" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox31"
+                [(ngModel)]="alert2[14]"
+              /><span class="text-[#2a9d8f]">(A31)</span> Container temp too
+              high </label
+            ><br />
+            <label for="checkbox32" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox32"
+                [(ngModel)]="alert2[15]"
+              /><span class="text-[#2a9d8f]">(A32)</span> Defrost time too long </label
+            ><br />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alert3  -->
+
+    <section class="ml-[17em] mt-4 container relative pb-10" id="Alert2">
+      <div class="mt-4 ml-4">
+        <h2 class="logo text-[25px] text-[#6B9080]">Alert 3</h2>
+        <div class="flex">
+          <div class="w-1/2 pr-32 ml-20 space-y-7">
+            <label for="checkbox33" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox33"
+                [(ngModel)]="alert3[0]"
+              /><span class="text-[#2a9d8f]">(A33)</span> Evaporator Temp too
+              low </label
+            ><br />
+            <label for="checkbox34" class="logo text-[20px] text-[rgb(7,59,76)]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox34"
+                [(ngModel)]="alert3[1]"
+              /><span class="text-[#2a9d8f]">(A34)</span> Compressor temp too
+              high </label
+            ><br />
+            <label for="checkbox35" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox35"
+                [(ngModel)]="alert3[2]"
+              /><span class="text-[#2a9d8f]">(A35)</span>Temperature fault </label
+            ><br />
+            <label for="checkbox36" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox36"
+                [(ngModel)]="alert3[3]"
+              /><span class="text-[#2a9d8f]">(A36)</span> High pressure cut off.
+              Cool mode </label
+            ><br />
+            <label for="checkbox37" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox37"
+                [(ngModel)]="alert3[4]"
+              /><span class="text-[#2a9d8f]">(A37)</span> High pressure cut off.
+              Hot gas mode </label
+            ><br />
+            <label for="checkbox38" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox38"
+                [(ngModel)]="alert3[5]"
+              />For Future</label
+            ><br />
+            <label for="checkbox39" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox39"
+                [(ngModel)]="alert3[6]"
+              />For Future</label
+            ><br />
+            <label for="checkbox40" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox40"
+                [(ngModel)]="alert3[7]"
+              />For Future</label
+            ><br />
+          </div>
+
+          <div class="w-1/2 pr-32 ml-20 space-y-7">
+            <label for="checkbox41" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox41"
+                [(ngModel)]="alert3[8]"
+              /><span class="text-[#2a9d8f]">(A41)</span> Set point different
+              Sys1 / Sys2 </label
+            ><br />
+            <label for="checkbox42" class="logo text-[20px] text-[rgb(7,59,76)]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox42"
+                [(ngModel)]="alert3[9]"
+              /><span class="text-[#2a9d8f]">(A42)</span> No response from other
+              unit </label
+            ><br />
+            <label for="checkbox43" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox43"
+                [(ngModel)]="alert3[10]"
+              />For Future</label
+            ><br />
+            <label for="checkbox44" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox44"
+                [(ngModel)]="alert3[11]"
+              />For Future</label
+            ><br />
+            <label for="checkbox45" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox45"
+                [(ngModel)]="alert3[12]"
+              />For Future</label
+            ><br />
+            <label for="checkbox46" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox46"
+                [(ngModel)]="alert3[13]"
+              />For Future</label
+            ><br />
+            <label for="checkbox47" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox47"
+                [(ngModel)]="alert3[14]"
+              />For Future</label
+            ><br />
+            <label for="checkbox48" class="logo text-[20px] text-[#073b4c]"
+              ><input
+                type="checkbox"
+                class="mr-5"
+                id="checkbox48"
+                [(ngModel)]="alert3[15]"
+              />For Future</label
+            ><br />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- button  -->
+    <section class="flex mt-5">
+      <div class="mt-5 ml-[17em] mb-10 hidden">
+        <button
+          id="testButton"
+          onclick="checkInputsAndShowPopup()"
+          class="p-4 text-lg z-30 transition-all font-semibold tracking-wider hover:border-white hover:text-white hover:bg-[#073b4c] text-[#073b4c] border-[#6B9080] background border-2 rounded-full w-52 pl-9 pr-9 logo"
+        >
+          Test
+        </button>
+      </div>
+      <div class="mt-4 ml-[28em] mb-10">
+        <button
+          id="Automate"
+          (click)="automateData()"
+          class="p-4 text-lg transition-all font-semibold tracking-wider hover:border-white hover:text-white hover:bg-[#073b4c] text-[#073b4c] border-[#6B9080] background border-2 rounded-full w-52 pl-9 pr-9 logo"
+        >
+          Automate
+        </button>
+      </div>
+
+      <div class="mt-4 ml-[15em] mb-10">
+        <button
+          class="p-4 text-lg transition-all font-semibold tracking-wider hover:border-white hover:text-white hover:bg-[#073b4c] text-[#073b4c] border-[#6B9080] background border-2 rounded-full w-52 pl-9 pr-9 logo"
+          (click)="sendData()"
+          id="sendButton"
+        >
+          Send
+        </button>
+      </div>
+
+      <div class="mt-4 ml-[15em] mb-10">
+        <button
+          class="p-4 text-lg transition-all font-semibold tracking-wider hover:border-white hover:text-white hover:bg-[#073b4c] text-[#073b4c] border-[#6B9080] background border-2 rounded-full w-52 pl-9 pr-9 logo"
+          id="sendMailButton"
+          (click)="showPopupMail()"
+        >
+          Send a mail
+        </button>
+      </div>
+    </section>
+
+    <!-- popup section start -->
+
+    <section
+      class="background1 hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mx-auto w-[40em] border-2 border-slate-300 rounded-lg z-10 h-[40em] text-center"
+      id="popupSection1"
+    >
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          viewBox="0 0 20 20"
+          class="mt-5 ml-[37em] cursor-pointer"
+          (click)="closePopup()"
+        >
+          <path
+            fill="#003566"
+            d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34A8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83l-1.41 1.41L10 11.41l-2.83 2.83l-1.41-1.41L8.59 10L5.76 7.17l1.41-1.41L10 8.59l2.83-2.83l1.41 1.41z"
+          />
+        </svg>
+      </div>
+      <div class="w-40 h-40 rounded-full mt-44 ml-60">
+        <img src="../../assets/images/tick.gif" alt="test" />
+      </div>
+      <div>
+        <h2 class="pt-12 pl-5 font-semibold logo text-[20px]">
+          Sent Successfully!
+        </h2>
+      </div>
+    </section>
+
+    <section
+      class="background1 hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mx-auto w-[40em] border-2 border-slate-300 rounded-lg z-10 h-[40em] text-center"
+      id="popupErrorSection1"
+    >
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          viewBox="0 0 20 20"
+          class="mt-5 ml-[37em] cursor-pointer"
+          (click)="closePopup1()"
+        >
+          <path
+            fill="#003566"
+            d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34A8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83l-1.41 1.41L10 11.41l-2.83 2.83l-1.41-1.41L8.59 10L5.76 7.17l1.41-1.41L10 8.59l2.83-2.83l1.41 1.41z"
+          />
+        </svg>
+      </div>
+      <div class="w-40 h-40 rounded-full mt-44 ml-60">
+        <img src="../../assets/images/wrong.gif" alt="test" />
+      </div>
+      <div>
+        <h2 class="pt-12 pl-5 font-semibold logo text-[20px]">
+          Something Wrong !!!
+        </h2>
+      </div>
+    </section>
+
+    <section
+      #popupMailSection
+      class="background1 hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mx-auto w-[40em] border-2 border-slate-300 rounded-lg z-10 h-[40em] text-center"
+      id="popupmailSection"
+    >
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          viewBox="0 0 20 20"
+          class="mt-5 ml-[37em] cursor-pointer"
+          (click)="closePopupMail()"
+        >
+          <path
+            fill="#003566"
+            d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34A8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83l-1.41 1.41L10 11.41l-2.83 2.83l-1.41-1.41L8.59 10L5.76 7.17l1.41-1.41L10 8.59l2.83-2.83l1.41 1.41z"
+          />
+        </svg>
+      </div>
+      <div class="w-40 h-40 rounded-full mt-44 ml-60">
+        <img src="../../assets/images/alert.gif" alt="test" />
+      </div>
+      <div>
+        <h2 class="pt-12 pl-5 font-semibold logo text-[20px]">
+          Sorry this feature will be added in future !!!
+        </h2>
+      </div>
+    </section>
+
+    <!-- popup section end -->
+    <!-- footer  -->
+
+    <footer class="ml-[15em]">
+      <section
+        class="w-full h-16 flex bg-[#D5BDAF] border-2 border-white place-content-end items-center pr-5"
+      >
+        <h2 class="ml-3 cursor-pointer font-extrabold text-[20px] text-white">
+          addons
+        </h2>
+      </section>
+    </footer>
+    <script src="" async defer></script>
+  </body>
+</html>

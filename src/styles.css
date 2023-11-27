@@ -1,1 +1,108 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Patua+One&family=Rakkas&display=swap");
+.logo {
+  font-family: "Bree Serif", serif;
+}
+
+.logo1 {
+  font-family: "Rakkas", serif;
+}
+
+h2 {
+  font-family: "Patua One", serif;
+}
+
+.search {
+  display: block;
+  background: linear-gradient(
+    142.99deg,
+    rgba(255, 255, 255, 0.63) 15.53%,
+    rgba(255, 255, 255, 0.63) 88.19%
+  );
+  box-shadow: 0px 12px 24px -1px rgba(0, 0, 0, 0.18);
+  border-color: rgba(7, 4, 14, 0);
+  border-radius: 50px;
+  block-size: 20px;
+  padding: 18px 15px;
+  outline: none;
+  text-align: center;
+  width: 200px;
+  transition: 0.5s;
+}
+
+.search:focus {
+  width: 280px;
+}
+
+.search::placeholder {
+  color: #a5a58d;
+}
+
+.rounded-image {
+  border-radius: 50%;
+}
+
+.background {
+  background: rgba(234, 244, 244, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.background1 {
+  background: rgba(234, 244, 244, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.background2 {
+  background: rgba(234, 244, 244, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.background3 {
+  background: rgba(234, 244, 244, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.back {
+  background: rgba(234, 244, 244, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.container {
+  background: rgba(204, 227, 222, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+input.form-radio:checked {
+  border-color: #6b9080;
+  background-color: #6b9080;
+}
+
+.popup {
+  background: rgba(237, 237, 233, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
