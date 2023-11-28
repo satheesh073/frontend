@@ -11,6 +11,8 @@ import axios from 'axios';
 })
 export class TcrComponent {
   constructor(private cdr: ChangeDetectorRef, private datePipe: DatePipe) {}
+  downloadJson: boolean = false;
+
   value: number = 0;
   isPrimarySystemDropdownOpen = false;
   selectedSystem: string | null = null;
@@ -116,6 +118,8 @@ export class TcrComponent {
   automateData() {
     this.selectedIngress = 'TCP';
     this.batteryLevel = '12';
+
+    this.selectedReeferMode = '4';
 
     this.gatewayId = 'ASSETLINK_TCR_109_001';
     this.deviceId = 'ANANTHI-TCR'; //3654
@@ -499,22 +503,25 @@ export class TcrComponent {
     const formattedJson = JSON.stringify(requestData, null, 2);
 
     // Blob for JSON data
-    const jsonBlob = new Blob([formattedJson], { type: 'application/json' });
+    if (this.downloadJson) {
+      // Blob for JSON data
+      const jsonBlob = new Blob([formattedJson], { type: 'application/json' });
 
-    // Creating an element
-    const downloadLink = document.createElement('a');
+      // Creating an element
+      const downloadLink = document.createElement('a');
 
-    // Download link attributes
-    downloadLink.href = URL.createObjectURL(jsonBlob);
-    downloadLink.download = 'requestData.json';
+      // download link attributes
+      downloadLink.href = URL.createObjectURL(jsonBlob);
+      downloadLink.download = 'requestData.json';
 
-    // Append to the body
-    document.body.appendChild(downloadLink);
+      // Append to the body
+      document.body.appendChild(downloadLink);
 
-    // Trigger to download
-    downloadLink.click();
+      // Trigger to download
+      downloadLink.click();
 
-    document.body.removeChild(downloadLink);
+      document.body.removeChild(downloadLink);
+    }
 
     console.log('Data to be sent to API:', requestData);
 
@@ -542,11 +549,22 @@ export class TcrComponent {
     // fear end
   }
 
+  // download Json
+  onCheckboxChange(): void {
+    // Handle checkbox change if needed
+  }
+
+  // popups
   showSuccessPopup(): void {
     // Code to show the success popup
     const popup = document.getElementById('popupSection1');
     if (popup) {
       popup.classList.remove('hidden');
+
+      // Set a timer to hide the popup after 3 seconds
+      setTimeout(() => {
+        popup.classList.add('hidden');
+      }, 2000);
     }
   }
 
@@ -555,8 +573,14 @@ export class TcrComponent {
     const popup = document.getElementById('popupErrorSection1');
     if (popup) {
       popup.classList.remove('hidden');
+
+      // Set a timer to hide the popup after 3 seconds
+      setTimeout(() => {
+        popup.classList.add('hidden');
+      }, 2000);
     }
   }
+
   closePopup(): void {
     // Logic to close the popup goes here
     const popupSection = document.getElementById('popupSection1');

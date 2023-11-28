@@ -11,6 +11,7 @@ import axios from 'axios';
 })
 export class NmrComponent {
   constructor(private cdr: ChangeDetectorRef, private datePipe: DatePipe) {}
+  downloadJson: boolean = false;
 
   isPrimarySystemDropdownOpen = false;
   selectedSystem: string | null = null;
@@ -480,22 +481,25 @@ export class NmrComponent {
     const formattedJson = JSON.stringify(requestData, null, 2);
 
     // Blob for JSON data
-    const jsonBlob = new Blob([formattedJson], { type: 'application/json' });
+    if (this.downloadJson) {
+      // Blob for JSON data
+      const jsonBlob = new Blob([formattedJson], { type: 'application/json' });
 
-    // Creating an element
-    const downloadLink = document.createElement('a');
+      // Creating an element
+      const downloadLink = document.createElement('a');
 
-    // download link attributes
-    downloadLink.href = URL.createObjectURL(jsonBlob);
-    downloadLink.download = 'requestData.json';
+      // download link attributes
+      downloadLink.href = URL.createObjectURL(jsonBlob);
+      downloadLink.download = 'requestData.json';
 
-    // Append to the body
-    document.body.appendChild(downloadLink);
+      // Append to the body
+      document.body.appendChild(downloadLink);
 
-    // Trigger to download
-    downloadLink.click();
+      // Trigger to download
+      downloadLink.click();
 
-    document.body.removeChild(downloadLink);
+      document.body.removeChild(downloadLink);
+    }
 
     console.log('Data to be sent to API:', requestData);
 
@@ -523,11 +527,21 @@ export class NmrComponent {
     // fear end
   }
 
+  // download Json
+  onCheckboxChange(): void {
+    // Handle checkbox change if needed
+  }
+
   showSuccessPopup(): void {
     // Code to show the success popup
     const popup = document.getElementById('popupSection1');
     if (popup) {
       popup.classList.remove('hidden');
+
+      // Set a timer to hide the popup after 3 seconds
+      setTimeout(() => {
+        popup.classList.add('hidden');
+      }, 2000);
     }
   }
 
@@ -536,6 +550,11 @@ export class NmrComponent {
     const popup = document.getElementById('popupErrorSection1');
     if (popup) {
       popup.classList.remove('hidden');
+
+      // Set a timer to hide the popup after 3 seconds
+      setTimeout(() => {
+        popup.classList.add('hidden');
+      }, 2000);
     }
   }
 
@@ -655,6 +674,7 @@ export class NmrComponent {
     this.ambientTemperature = '25';
     this.OperationHoursP = '25';
     this.OperationHoursS = '25';
+    this.selectedReeferMode = '4';
     this.updateLastTxTime();
 
     console.log('Data has been automated!');
