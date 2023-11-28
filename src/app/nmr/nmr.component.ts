@@ -682,10 +682,30 @@ export class NmrComponent {
 
   private updateLastTxTime() {
     const currentDate = new Date();
+
+    if (this.lasttxtime !== null) {
+      const currentDateTime = new Date(this.lasttxtime);
+      // Perform additional operations with currentDateTime if needed
+    }
+
     this.lasttxtime = this.datePipe.transform(
       currentDate,
       'yyyy-MM-ddTHH:mm:ss.SSSZ'
     );
     this.cdr.detectChanges();
+  }
+
+  incrementOneMinute() {
+    if (this.lasttxtime !== null) {
+      const currentDateTime = new Date(this.lasttxtime);
+      currentDateTime.setMinutes(currentDateTime.getMinutes() + 1);
+
+      // Update lasttxtime with the new value
+      this.lasttxtime = this.datePipe.transform(
+        currentDateTime,
+        'yyyy-MM-ddTHH:mm:ss.SSSZ'
+      );
+      this.cdr.detectChanges();
+    }
   }
 }

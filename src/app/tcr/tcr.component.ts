@@ -158,15 +158,6 @@ export class TcrComponent {
     console.log('Data has been automated!');
   }
 
-  private updateLastTxTime() {
-    const currentDate = new Date();
-    this.lasttxtime = this.datePipe.transform(
-      currentDate,
-      'yyyy-MM-ddTHH:mm:ss.SSSZ'
-    );
-    this.cdr.detectChanges(); // Detect changes to update the view
-  }
-
   sendData(): void {
     const binaryString1 = this.alert1
       .slice()
@@ -628,6 +619,37 @@ export class TcrComponent {
       // Click occurred outside the popup
 
       popupSection.classList.add('hidden');
+      this.cdr.detectChanges();
+    }
+  }
+
+  // increment time
+
+  private updateLastTxTime() {
+    const currentDate = new Date();
+
+    if (this.lasttxtime !== null) {
+      const currentDateTime = new Date(this.lasttxtime);
+      // Perform additional operations with currentDateTime if needed
+    }
+
+    this.lasttxtime = this.datePipe.transform(
+      currentDate,
+      'yyyy-MM-ddTHH:mm:ss.SSSZ'
+    );
+    this.cdr.detectChanges();
+  }
+
+  incrementOneMinute() {
+    if (this.lasttxtime !== null) {
+      const currentDateTime = new Date(this.lasttxtime);
+      currentDateTime.setMinutes(currentDateTime.getMinutes() + 1);
+
+      // Update lasttxtime with the new value
+      this.lasttxtime = this.datePipe.transform(
+        currentDateTime,
+        'yyyy-MM-ddTHH:mm:ss.SSSZ'
+      );
       this.cdr.detectChanges();
     }
   }
