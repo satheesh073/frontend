@@ -106,7 +106,6 @@ export class NmrComponent {
   }
 
   // send button
-  // Send button click handler
   sendData(): void {
     const binaryString1 = this.alert1
       .slice()
@@ -114,21 +113,20 @@ export class NmrComponent {
       .map((value) => (value ? '1' : '0'))
       .join('');
 
-    // Output the reversed binary string for Alert 1
+    // reversed binary string for Alert 1
     console.log('Reversed Binary string for Alert 1:', binaryString1);
     this.value = this.selectedOperationModeP === 'Cooling' ? 4 : 5;
     console.log(this.value);
     this.value1 = this.selectedOperationModeS === 'Cooling' ? 4 : 5;
     console.log(this.value1);
 
-    // Reverse the boolean array for Alert 2 and then convert it to a binary string
     const binaryString2 = this.alert2
       .slice()
       .reverse()
       .map((value) => (value ? '1' : '0'))
       .join('');
 
-    // Output the reversed binary string for Alert 2
+    // reversed binary string for Alert 2
     console.log('Reversed Binary string for Alert 2:', binaryString2);
     const binaryString3 = this.alert3
       .slice()
@@ -136,12 +134,10 @@ export class NmrComponent {
       .map((value) => (value ? '1' : '0'))
       .join('');
 
-    // Output the reversed binary string for Alert 2
+    // reversed binary string for Alert 2
     console.log('Reversed Binary string for Alert 3:', binaryString3);
 
     // fear start
-
-    // Add other necessary variable declarations here
 
     const apiUrl =
       'https://assetiq-dev.rt1cloud.com/reeferiq-api/device-gateway-messages/message-simulator';
@@ -489,7 +485,7 @@ export class NmrComponent {
     // Creating an element
     const downloadLink = document.createElement('a');
 
-    // Set the download link attributes
+    // download link attributes
     downloadLink.href = URL.createObjectURL(jsonBlob);
     downloadLink.download = 'requestData.json';
 
@@ -499,7 +495,6 @@ export class NmrComponent {
     // Trigger to download
     downloadLink.click();
 
-    // Remove the link from the body
     document.body.removeChild(downloadLink);
 
     console.log('Data to be sent to API:', requestData);
@@ -546,7 +541,7 @@ export class NmrComponent {
 
   // close success popup
   closePopup(): void {
-    // Logic to close the popup goes here
+    // Logic to close the popup
     const popupSection = document.getElementById('popupSection1');
     if (popupSection) {
       popupSection.classList.add('hidden');
@@ -555,7 +550,7 @@ export class NmrComponent {
 
   // close error popup
   closePopup1(): void {
-    // Logic to close the popup goes here
+    // Logic to close the popup
     const popupSection = document.getElementById('popupErrorSection1');
     if (popupSection) {
       popupSection.classList.add('hidden');
@@ -564,8 +559,6 @@ export class NmrComponent {
 
   // sentmail
   @ViewChild('popupMailSection') popupMailSection: ElementRef | undefined;
-
-  // ... your other component properties and methods
 
   showPopupMail(): void {
     console.log('showPopupMail called');
@@ -588,10 +581,10 @@ export class NmrComponent {
   }
 
   private closePopupIfOutside(popupId: string, event: Event): void {
-    // Click occurred outside the popup, so close it
+    // Click occurred outside the popup
     const popupSection = document.getElementById(popupId);
     if (popupSection && !popupSection.contains(event.target as Node)) {
-      // Click occurred outside the popup, so close it
+      // Click occurred outside the popup
 
       popupSection.classList.add('hidden');
       this.cdr.detectChanges();
@@ -673,6 +666,6 @@ export class NmrComponent {
       currentDate,
       'yyyy-MM-ddTHH:mm:ss.SSSZ'
     );
-    this.cdr.detectChanges(); // Detect changes to update the view
+    this.cdr.detectChanges();
   }
 }

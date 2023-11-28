@@ -21,10 +21,10 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // Initialize showNmrComponent based on the initial route
+    // Initialize showNmrComponent
     this.updateShowComponent(this.router.url);
 
-    // Subscribe to route changes to update showNmrComponent
+    //route to updating showNmrComponent
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateShowComponent(event.url);
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   }
 
   updateShowComponent(url: string) {
-    // Check if the current route contains 'nmr' or 'tcr'
+    // route contains 'nmr' or 'tcr'
     this.showNmrComponent = !url.includes('/nmr') && !url.includes('/tcr');
   }
 
@@ -82,8 +82,7 @@ export class AppComponent implements OnInit {
   }
 
   showNoNotification(): void {
-    // Handle the click on "No Notification" link
-    // Add your logic here
+    // "No Notification" link
   }
   toggleDropdown1(event: Event): void {
     event.stopPropagation();

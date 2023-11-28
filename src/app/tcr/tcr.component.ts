@@ -183,7 +183,7 @@ export class TcrComponent {
       .join('');
     // fear start
 
-    // Add other necessary variable declarations here
+    // necessary variables
 
     this.value = this.selectedSystem === 'Cooling' ? 4 : 5;
     console.log(this.value);
@@ -427,7 +427,7 @@ export class TcrComponent {
                 {
                   PointSensor: {
                     Name: 'Active Errors 1',
-                    sequence: [binaryString1], //['0000000000000001']
+                    sequence: [binaryString1], //['0000000000000001'] binaryString1
                     enumeration: 'values',
                   },
                 },
@@ -476,14 +476,14 @@ export class TcrComponent {
                 {
                   PointSensor: {
                     Name: 'Active Errors 3',
-                    sequence: [binaryString3], //['0000000000000001']
+                    sequence: [binaryString3], //['0000000000000001'] binaryString3
                     enumeration: 'values',
                   },
                 },
                 {
                   PointSensor: {
                     Name: 'Active Errors 2',
-                    sequence: [binaryString2], //['0000000000000000']
+                    sequence: [binaryString2], //['0000000000000000'] binaryString2 ['1111111111111111']
                     enumeration: 'values',
                   },
                 },
@@ -504,7 +504,7 @@ export class TcrComponent {
     // Creating an element
     const downloadLink = document.createElement('a');
 
-    // Set the download link attributes
+    // Download link attributes
     downloadLink.href = URL.createObjectURL(jsonBlob);
     downloadLink.download = 'requestData.json';
 
@@ -514,7 +514,6 @@ export class TcrComponent {
     // Trigger to download
     downloadLink.click();
 
-    // Remove the link from the body
     document.body.removeChild(downloadLink);
 
     console.log('Data to be sent to API:', requestData);
@@ -568,7 +567,7 @@ export class TcrComponent {
 
   // close error popup
   closePopup1(): void {
-    // Logic to close the popup goes here
+    // Logic to close the popup
     const popupSection = document.getElementById('popupErrorSection1');
     if (popupSection) {
       popupSection.classList.add('hidden');
@@ -577,8 +576,6 @@ export class TcrComponent {
 
   // sentmail
   @ViewChild('popupMailSection') popupMailSection: ElementRef | undefined;
-
-  // ... your other component properties and methods
 
   showPopupMail(): void {
     console.log('showPopupMail called');
@@ -601,10 +598,10 @@ export class TcrComponent {
   }
 
   private closePopupIfOutside(popupId: string, event: Event): void {
-    // Click occurred outside the popup, so close it
+    // Click occurred outside the popup
     const popupSection = document.getElementById(popupId);
     if (popupSection && !popupSection.contains(event.target as Node)) {
-      // Click occurred outside the popup, so close it
+      // Click occurred outside the popup
 
       popupSection.classList.add('hidden');
       this.cdr.detectChanges();

@@ -9,8 +9,73 @@
     <link rel="stylesheet" href="" />
   </head>
   <body class="mt-4">
+    <!-- side nav for TCR  -->
+    <section
+      class="h-full w-60 fixed border-2 border-white top-0 left-0 bg-[#E3D5CA]"
+    >
+      <div class="pb-5 pl-5 mt-20 border-b-2 border-black border-white">
+        <div class="mb-5">
+          <a
+            class="font-extrabold hover:text-[#1a759f] text-white text-[22px] logo"
+            >Data Section</a
+          >
+        </div>
+        <div class="mb-5">
+          <a
+            class="font-extrabold hover:text-[#1a759f] text-white text-[22px] logo"
+            >Supply</a
+          >
+        </div>
+        <div class="mb-5">
+          <a
+            class="font-extrabold hover:text-[#1a759f] text-white text-[22px] logo"
+            >Reefer Mode</a
+          >
+        </div>
+        <div class="mb-5">
+          <a
+            class="font-extrabold hover:text-[#1a759f] text-white text-[22px] logo"
+            >Inventory</a
+          >
+        </div>
+        <div class="mb-5">
+          <a
+            class="font-extrabold hover:text-[#1a759f] text-white text-[22px] logo"
+            >Set Operation</a
+          >
+        </div>
+
+        <div class="mb-5">
+          <a
+            class="font-extrabold hover:text-[#1a759f] text-white text-[22px] logo"
+            >Temperature View</a
+          >
+        </div>
+        <div class="mb-5">
+          <a
+            class="font-extrabold hover:text-[#1a759f] text-white pb-3 text-[22px] logo"
+            >Common</a
+          >
+        </div>
+
+        <div class="mb-5">
+          <a
+            class="font-extrabold hover:text-[#1a759f] text-white text-[22px] logo"
+            >Alerts</a
+          >
+        </div>
+      </div>
+      <div class="mt-[22em] ml-3">
+        <button
+          class="p-4 text-lg transition-all font-semibold tracking-wider hover:border-white hover:text-white hover:bg-[#073b4c] text-[#073b4c] border-[#6B9080] background border-2 rounded-full w-52 pl-9 pr-9 logo"
+        >
+          Log Out
+        </button>
+      </div>
+    </section>
     <!-- constant -->
-    <section class="ml-[17em] mt-4 container h-[23em]" id="constant">
+
+    <section class="ml-[17em] mt-4 container h-[23em]" id="constant1">
       <div class="mt-4 ml-4">
         <h2 class="logo text-[25px] text-[#6B9080]">Data Section</h2>
         <div class="flex">
@@ -121,7 +186,7 @@
     </section>
     <!-- supply -->
 
-    <section class="ml-[17em] flex mt-4" id="supply">
+    <section class="ml-[17em] flex mt-4" id="supply1">
       <!-- supply  -->
 
       <section class="container relative w-1/2 pb-10 mr-5">
@@ -836,7 +901,8 @@
                 class="mr-5"
                 id="checkbox12"
                 [(ngModel)]="alert1[11]"
-              />For Future</label
+              /><span class="text-[#2a9d8f]">(A12)</span>Low Current on Heat
+              Element</label
             ><br />
             <label for="checkbox13" class="logo text-[20px] text-[#073b4c]"
               ><input
@@ -844,7 +910,8 @@
                 class="mr-5"
                 [(ngModel)]="alert1[12]"
                 id="checkbox13"
-              />For Future</label
+              /><span class="text-[#2a9d8f]">(A13)</span>High Current on Heat
+              Element</label
             ><br />
             <label for="checkbox14" class="logo text-[20px] text-[#073b4c]"
               ><input
@@ -852,8 +919,8 @@
                 class="mr-5"
                 id="checkbox14"
                 [(ngModel)]="alert1[13]"
-              /><span class="text-[#2a9d8f]">(A14)</span> Low Current on
-              Evaporator fan </label
+              /><span class="text-[#2a9d8f]">(A14)</span> Low Current on pump
+              motor </label
             ><br />
             <label for="checkbox15" class="logo text-[20px] text-[#073b4c]"
               ><input
@@ -918,7 +985,8 @@
                 class="mr-5"
                 id="checkbox20"
                 [(ngModel)]="alert2[3]"
-              />For Future</label
+              /><span class="text-[#2a9d8f]">(A20)</span>Different Current on
+              Heat Element</label
             ><br />
             <label for="checkbox21" class="logo text-[20px] text-[#073b4c]"
               ><input
@@ -953,8 +1021,7 @@
                 class="mr-5"
                 id="checkbox24"
                 [(ngModel)]="alert2[7]"
-              /><span class="text-[#2a9d8f]">(A24)</span> Compressor unbound
-              Fail </label
+              />For Future</label
             ><br />
           </div>
 
@@ -989,7 +1056,7 @@
                 class="mr-5"
                 id="checkbox28"
                 [(ngModel)]="alert2[11]"
-              />For Future</label
+              /><span class="text-[#2a9d8f]">(A28)</span> Float Switch Failure </label
             ><br />
             <label for="checkbox29" class="logo text-[20px] text-[#073b4c]"
               ><input
@@ -1023,7 +1090,7 @@
                 class="mr-5"
                 id="checkbox32"
                 [(ngModel)]="alert2[15]"
-              /><span class="text-[#2a9d8f]">(A32)</span> Defrost time too long </label
+              />For Future </label
             ><br />
           </div>
         </div>
@@ -1043,8 +1110,7 @@
                 class="mr-5"
                 id="checkbox33"
                 [(ngModel)]="alert3[0]"
-              /><span class="text-[#2a9d8f]">(A33)</span> Evaporator Temp too
-              low </label
+              />For Future</label
             ><br />
             <label for="checkbox34" class="logo text-[20px] text-[rgb(7,59,76)]"
               ><input
@@ -1078,8 +1144,7 @@
                 class="mr-5"
                 id="checkbox37"
                 [(ngModel)]="alert3[4]"
-              /><span class="text-[#2a9d8f]">(A37)</span> High pressure cut off.
-              Hot gas mode </label
+              />For Future</label
             ><br />
             <label for="checkbox38" class="logo text-[20px] text-[#073b4c]"
               ><input
@@ -1132,7 +1197,8 @@
                 class="mr-5"
                 id="checkbox43"
                 [(ngModel)]="alert3[10]"
-              />For Future</label
+              /><span class="text-[#2a9d8f]">(A43)</span> Heat Element Temp too
+              high</label
             ><br />
             <label for="checkbox44" class="logo text-[20px] text-[#073b4c]"
               ><input
