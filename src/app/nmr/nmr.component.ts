@@ -721,70 +721,6 @@ export class NmrComponent {
   private marker: google.maps.Marker | null = null;
   private map: google.maps.Map | null = null;
 
-  // ngOnInit() {
-  //   this.initMap();
-  // }
-
-  // Inside your component class
-  // initMap() {
-  //   const mapDiv = document.getElementById('yourMapDiv')! as HTMLElement;
-
-  //   const mapOptions = {
-  //     center: { lat: 0, lng: 0 },
-  //     zoom: 8,
-  //   };
-
-  //   const map = new google.maps.Map(mapDiv, mapOptions);
-
-  //   // Add a click event listener to the map
-  //   google.maps.event.addListener(
-  //     map,
-  //     'click',
-  //     (event: google.maps.MouseEvent) => {
-  //       // Remove the previous marker if it exists
-  //       if (this.marker) {
-  //         this.marker.setMap(null);
-  //       }
-
-  //       // Create a new marker at the clicked location
-  //       this.marker = new google.maps.Marker({
-  //         position: event.latLng,
-  //         map: map,
-  //         draggable: true, // If you want the marker to be draggable
-  //         animation: google.maps.Animation.DROP, // You can customize the animation
-  //       });
-
-  //       // Update the latitude and longitude inputs
-  //       this.latitude = event.latLng.lat().toString();
-  //       this.longitude = event.latLng.lng().toString();
-  //     }
-  //   );
-
-  //   // Add any additional map features or functionality here
-  // }
-
-  // // Add this method to handle marker removal
-  // removeMarker() {
-  //   if (this.marker) {
-  //     this.marker.setMap(null);
-  //   }
-  // }
-
-  // // Function to update the input fields if needed
-  // updateInputFields() {
-  //   const latitudeInput = document.getElementById(
-  //     'latitudeInput'
-  //   ) as HTMLInputElement;
-  //   const longitudeInput = document.getElementById(
-  //     'longitudeInput'
-  //   ) as HTMLInputElement;
-
-  //   if (latitudeInput && longitudeInput) {
-  //     latitudeInput.value = this.latitude || '';
-  //     longitudeInput.value = this.longitude || '';
-  //   }
-  // }
-
   ngOnInit() {
     this.initMap();
   }
@@ -811,32 +747,6 @@ export class NmrComponent {
     // Additional map features or functionality can be added here
   }
 
-  // onSearchClick() {
-  //   if (this.searchAddress && this.map) {
-  //     const geocoder = new google.maps.Geocoder();
-
-  //     geocoder.geocode(
-  //       { address: this.searchAddress },
-  //       (results: any, status: any) => {
-  //         if (status === google.maps.GeocoderStatus.OK) {
-  //           const location = results[0]?.geometry?.location;
-
-  //           if (location) {
-  //             this.map!.setCenter(location); // Non-null assertion operator
-  //             this.updateMarker(location);
-  //           } else {
-  //             alert('Location information not available.');
-  //           }
-  //         } else {
-  //           alert(
-  //             'Geocode was not successful for the following reason: ' + status
-  //           );
-  //         }
-  //       }
-  //     );
-  //   }
-  // }
-  // Inside your component class
   onSearchKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       this.performSearch();
