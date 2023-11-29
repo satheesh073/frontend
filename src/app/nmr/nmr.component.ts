@@ -726,6 +726,34 @@ export class NmrComponent {
     // Create a new map instance
     const map = new google.maps.Map(mapDiv, mapOptions);
 
+    // Add a click event listener to the map
+    map.addListener('click', (event: any) => {
+      // Update latitude and longitude with the clicked location
+      this.latitude = event.latLng.lat().toFixed(6);
+      this.longitude = event.latLng.lng().toFixed(6);
+
+      // You might also want to update the input fields if needed
+      this.updateInputFields();
+
+      // Detect changes to ensure Angular updates the view
+      this.cdr.detectChanges();
+    });
+
     // Add any additional map features or functionality here
+  }
+
+  // Function to update the input fields if needed
+  updateInputFields() {
+    const latitudeInput = document.getElementById(
+      'latitudeInput'
+    ) as HTMLInputElement;
+    const longitudeInput = document.getElementById(
+      'longitudeInput'
+    ) as HTMLInputElement;
+
+    if (latitudeInput && longitudeInput) {
+      latitudeInput.value = this.latitude || '';
+      longitudeInput.value = this.longitude || '';
+    }
   }
 }
