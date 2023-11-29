@@ -21,10 +21,7 @@ function YourComponentController($scope) {
     };
 
     // Create a new map instance
-    map = new google.maps.Map(
-      document.getElementById("yourMapDiv"),
-      mapOptions
-    );
+    map = new google.maps.Map(document.getElementById("nmrMapDiv"), mapOptions);
 
     // Add a click event listener to the map
     map.addListener("click", function (event) {

@@ -1,7 +1,9 @@
+/// <reference types="@types/googlemaps" />
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import axios from 'axios';
+declare var google: any;
 
 @Component({
   selector: 'app-tcr',
@@ -10,6 +12,8 @@ import axios from 'axios';
   providers: [DatePipe],
 })
 export class TcrComponent {
+  searchAddress: string = '';
+
   constructor(private cdr: ChangeDetectorRef, private datePipe: DatePipe) {}
   downloadJson: boolean = false;
 
@@ -651,6 +655,93 @@ export class TcrComponent {
         'yyyy-MM-ddTHH:mm:ss.SSSZ'
       );
       this.cdr.detectChanges();
+    }
+  }
+  // map
+
+  private marker: google.maps.Marker | null = null;
+  private map: google.maps.Map | null = null;
+
+  ngOnInit() {
+    this.initMap();
+  }
+
+  initMap() {
+    const mapDiv = document.getElementById('nmrMapDiv')! as HTMLElement;
+
+    const mapOptions = {
+      center: { lat: 0, lng: 0 },
+      zoom: 8,
+    };
+
+    this.map = new google.maps.Map(mapDiv, mapOptions);
+
+    // Add a click event listener to the map
+    google.maps.event.addListener(
+      this.map,
+      'click',
+      (event: google.maps.MouseEvent) => {
+        this.updateMarker(event.latLng);
+      }
+    );
+
+    // Additional map features or functionality can be added here
+  }
+
+  onSearchKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.performSearch();
+    }
+  }
+
+  performSearch() {
+    if (this.searchAddress && this.map) {
+      const geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode(
+        { address: this.searchAddress },
+        (results: any, status: any) => {
+          if (status === google.maps.GeocoderStatus.OK) {
+            const location = results[0]?.geometry?.location;
+
+            if (location) {
+              this.map!.setCenter(location); // Non-null assertion operator
+              this.updateMarker(location);
+            } else {
+              alert('Location information not available.');
+            }
+          } else {
+            alert(
+              'Geocode was not successful for the following reason: ' + status
+            );
+          }
+        }
+      );
+    }
+  }
+
+  private updateMarker(latLng: google.maps.LatLng) {
+    // Remove the previous marker if it exists
+    if (this.marker) {
+      this.marker.setMap(null);
+    }
+
+    // Create a new marker at the clicked location
+    this.marker = new google.maps.Marker({
+      position: latLng,
+      map: this.map,
+      draggable: true,
+      animation: google.maps.Animation.DROP,
+    });
+
+    // Update the latitude and longitude inputs
+    this.latitude = latLng.lat().toString();
+    this.longitude = latLng.lng().toString();
+  }
+
+  removeMarker() {
+    if (this.marker) {
+      this.marker.setMap(null);
     }
   }
 }

@@ -14,8 +14,6 @@ declare var google: any;
 })
 export class NmrComponent {
   searchAddress: string = '';
-  // map: any; // Google Map instance
-  // marker: any; // Google Marker instance
 
   constructor(private cdr: ChangeDetectorRef, private datePipe: DatePipe) {}
   downloadJson: boolean = false;
@@ -726,7 +724,7 @@ export class NmrComponent {
   }
 
   initMap() {
-    const mapDiv = document.getElementById('yourMapDiv')! as HTMLElement;
+    const mapDiv = document.getElementById('nmrMapDiv')! as HTMLElement;
 
     const mapOptions = {
       center: { lat: 0, lng: 0 },
