@@ -4,6 +4,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import axios from 'axios';
 
 declare var google: any;
+/// <reference types="@types/googlemaps" />
 
 @Component({
   selector: 'app-nmr',
@@ -710,37 +711,159 @@ export class NmrComponent {
       this.cdr.detectChanges();
     }
   }
+
+  // map
+
   ngOnInit() {
     this.initMap();
   }
 
+  // initMap() {
+  //   // Use the non-null assertion operator (!) to assert that getElementById will return a non-null value
+  //   const mapDiv = document.getElementById('yourMapDiv')! as HTMLElement;
+
+  //   const mapOptions = {
+  //     center: { lat: 0, lng: 0 }, // Set initial center coordinates
+  //     zoom: 8, // Set initial zoom level
+  //   };
+
+  //   // Create a new map instance
+  //   const map = new google.maps.Map(mapDiv, mapOptions);
+
+  //   // Add a click event listener to the map
+  //   map.addListener('click', (event: any) => {
+  //     // Update latitude and longitude with the clicked location
+  //     this.latitude = event.latLng.lat().toFixed(6);
+  //     this.longitude = event.latLng.lng().toFixed(6);
+
+  //     // You might also want to update the input fields if needed
+  //     this.updateInputFields();
+
+  //     // Detect changes to ensure Angular updates the view
+  //     this.cdr.detectChanges();
+  //   });
+
+  //   // Add any additional map features or functionality here
+  // }
+
+  // red tag drag
   initMap() {
-    // Use the non-null assertion operator (!) to assert that getElementById will return a non-null value
     const mapDiv = document.getElementById('yourMapDiv')! as HTMLElement;
 
     const mapOptions = {
-      center: { lat: 0, lng: 0 }, // Set initial center coordinates
-      zoom: 8, // Set initial zoom level
+      center: { lat: 0, lng: 0 },
+      zoom: 8,
     };
 
     // Create a new map instance
     const map = new google.maps.Map(mapDiv, mapOptions);
 
-    // Add a click event listener to the map
-    map.addListener('click', (event: any) => {
-      // Update latitude and longitude with the clicked location
+    // Add a marker for the initial position (center)
+    const initialMarker = new google.maps.Marker({
+      position: mapOptions.center,
+      map: map,
+      title: 'Initial Location',
+      draggable: true, // Make the marker draggable
+    });
+
+    // Listen for the marker's dragend event to update latitude and longitude inputs
+    google.maps.event.addListener(initialMarker, 'dragend', (event: any) => {
       this.latitude = event.latLng.lat().toFixed(6);
       this.longitude = event.latLng.lng().toFixed(6);
-
-      // You might also want to update the input fields if needed
-      this.updateInputFields();
-
-      // Detect changes to ensure Angular updates the view
-      this.cdr.detectChanges();
     });
 
     // Add any additional map features or functionality here
   }
+
+  // tag previous one also
+  // initMap() {
+  //   const mapDiv = document.getElementById('yourMapDiv')! as HTMLElement;
+
+  //   const mapOptions = {
+  //     center: { lat: 0, lng: 0 },
+  //     zoom: 8,
+  //   };
+
+  //   // Create a new map instance
+  //   const map = new google.maps.Map(mapDiv, mapOptions);
+
+  //   // Add a click event listener to the map
+  //   google.maps.event.addListener(map, 'click', (event: any) => {
+  //     // Clear existing markers
+  //     this.clearMarkers();
+
+  //     // Create a marker for the clicked position
+  //     const marker = new google.maps.Marker({
+  //       position: event.latLng,
+  //       map: map,
+  //       title: 'Selected Location',
+  //       draggable: false, // Set draggable to false
+  //     });
+
+  //     // Set latitude and longitude inputs
+  //     this.latitude = event.latLng.lat().toFixed(6);
+  //     this.longitude = event.latLng.lng().toFixed(6);
+  //   });
+
+  //   // Add any additional map features or functionality here
+  // }
+
+  // // Function to clear markers from the map
+  // clearMarkers() {
+  //   // Implement this function to remove existing markers from the map
+  //   // You can maintain an array of markers and call setMap(null) for each marker
+  //   // Example:
+  //   // for (const marker of this.markers) {
+  //   //   marker.setMap(null);
+  //   // }
+  //   // this.markers = [];
+  // }
+  // markers: google.maps.Marker[] = [];
+
+  // initMap() {
+  //   const mapDiv = document.getElementById('yourMapDiv')! as HTMLElement;
+
+  //   const mapOptions = {
+  //     center: { lat: 0, lng: 0 },
+  //     zoom: 8,
+  //   };
+
+  //   // Create a new map instance
+  //   const map = new google.maps.Map(mapDiv, mapOptions);
+
+  //   // Add a click event listener to the map
+  //   google.maps.event.addListener(map, 'click', (event: any) => {
+  //     // Clear existing markers
+  //     this.clearMarkers();
+
+  //     // Create a marker for the clicked position
+  //     const marker = new google.maps.Marker({
+  //       position: event.latLng,
+  //       map: map,
+  //       title: 'Selected Location',
+  //       draggable: false, // Set draggable to false
+  //     });
+
+  //     // Set latitude and longitude inputs
+  //     this.latitude = event.latLng.lat().toFixed(6);
+  //     this.longitude = event.latLng.lng().toFixed(6);
+
+  //     // Save the marker to the markers array if needed
+  //     this.markers.push(marker);
+  //   });
+
+  //   // Add any additional map features or functionality here
+  // }
+
+  // // Function to clear markers from the map
+
+  // // Function to clear markers from the map
+  // clearMarkers() {
+  //   for (const marker of this.markers) {
+  //     marker.setMap(null);
+  //   }
+  //   this.markers = [];
+  // }
 
   // Function to update the input fields if needed
   updateInputFields() {
