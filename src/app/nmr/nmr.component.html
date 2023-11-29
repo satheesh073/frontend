@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="" />
   </head>
-  <body class="mt-4">
+  <body class="hidden mt-4">
     <!-- side nav  -->
     <section
       class="h-full w-60 fixed border-2 border-white top-0 left-0 bg-[#E3D5CA]"
@@ -1564,4 +1564,40 @@
     </footer>
     <script src="" async defer></script>
   </body>
+  <section
+    class="h-[35em] w-[45em] border-2 rounded-md border-[#cdb4db] ml-[40em]"
+  >
+    <div class="">
+      <div class="w-1/2">
+        <div class="relative flex">
+          <input
+            type="text"
+            class="mt-3 mb-3 ml-24 font-semibold text-center text-black rounded-full search input"
+            name="text"
+            autocomplete="off"
+            placeholder="Search"
+          />
+        </div>
+      </div>
+      <div class="h-[27em] border-t-2 border-[#cdb4db] border-b-2"></div>
+      <div class="flex">
+        <div class="relative inline-block mt-3 ml-20">
+          <input
+            id="latitudeInput"
+            [(ngModel)]="latitude"
+            class="rounded-2xl px-4 py-2 background font-semibold text-[#6B9080] text-center cursor-text border-gray-300 focus:outline-none"
+            placeholder="Latitude"
+          />
+        </div>
+        <div class="relative inline-block mt-3 ml-16">
+          <input
+            id="longitudeInput"
+            [(ngModel)]="longitude"
+            class="px-4 py-2 rounded-2xl font-semibold background text-[#6B9080] text-center cursor-text border-gray-300 focus:outline-none"
+            placeholder="Longitude"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 </html>
