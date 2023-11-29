@@ -487,7 +487,6 @@ export class NmrComponent {
 
     // Blob for JSON data
     if (this.downloadJson) {
-      // Blob for JSON data
       const jsonBlob = new Blob([formattedJson], { type: 'application/json' });
 
       // Creating an element
@@ -534,7 +533,7 @@ export class NmrComponent {
 
   // download Json
   onCheckboxChange(): void {
-    // Handle checkbox change if needed
+    // To Handle checkbox
   }
 
   showSuccessPopup(): void {
@@ -543,7 +542,7 @@ export class NmrComponent {
     if (popup) {
       popup.classList.remove('hidden');
 
-      // Set a timer to hide the popup after 3 seconds
+      // Timer
       setTimeout(() => {
         popup.classList.add('hidden');
       }, 2000);
@@ -556,7 +555,7 @@ export class NmrComponent {
     if (popup) {
       popup.classList.remove('hidden');
 
-      // Set a timer to hide the popup after 3 seconds
+      // Timer
       setTimeout(() => {
         popup.classList.add('hidden');
       }, 2000);
@@ -608,8 +607,6 @@ export class NmrComponent {
     // Click occurred outside the popup
     const popupSection = document.getElementById(popupId);
     if (popupSection && !popupSection.contains(event.target as Node)) {
-      // Click occurred outside the popup
-
       popupSection.classList.add('hidden');
       this.cdr.detectChanges();
     }
@@ -741,8 +738,6 @@ export class NmrComponent {
         this.updateMarker(event.latLng);
       }
     );
-
-    // Additional map features or functionality can be added here
   }
 
   onSearchKeydown(event: KeyboardEvent) {
@@ -762,7 +757,7 @@ export class NmrComponent {
             const location = results[0]?.geometry?.location;
 
             if (location) {
-              this.map!.setCenter(location); // Non-null assertion operator
+              this.map!.setCenter(location);
               this.updateMarker(location);
             } else {
               alert('Location information not available.');
@@ -778,12 +773,12 @@ export class NmrComponent {
   }
 
   private updateMarker(latLng: google.maps.LatLng) {
-    // Remove the previous marker if it exists
+    // Removeing previous marker
     if (this.marker) {
       this.marker.setMap(null);
     }
 
-    // Create a new marker at the clicked location
+    // Createing new one
     this.marker = new google.maps.Marker({
       position: latLng,
       map: this.map,
@@ -791,7 +786,7 @@ export class NmrComponent {
       animation: google.maps.Animation.DROP,
     });
 
-    // Update the latitude and longitude inputs
+    // Updating lat and long
     this.latitude = latLng.lat().toString();
     this.longitude = latLng.lng().toString();
   }

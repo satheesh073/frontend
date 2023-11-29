@@ -499,7 +499,6 @@ export class TcrComponent {
 
     // Blob for JSON data
     if (this.downloadJson) {
-      // Blob for JSON data
       const jsonBlob = new Blob([formattedJson], { type: 'application/json' });
 
       // Creating an element
@@ -545,9 +544,7 @@ export class TcrComponent {
   }
 
   // download Json
-  onCheckboxChange(): void {
-    // Handle checkbox change if needed
-  }
+  onCheckboxChange(): void {}
 
   // popups
   showSuccessPopup(): void {
@@ -556,7 +553,7 @@ export class TcrComponent {
     if (popup) {
       popup.classList.remove('hidden');
 
-      // Set a timer to hide the popup after 3 seconds
+      //Timer
       setTimeout(() => {
         popup.classList.add('hidden');
       }, 2000);
@@ -569,7 +566,7 @@ export class TcrComponent {
     if (popup) {
       popup.classList.remove('hidden');
 
-      // Set a timer to hide the popup after 3 seconds
+      // Timer
       setTimeout(() => {
         popup.classList.add('hidden');
       }, 2000);
@@ -577,7 +574,7 @@ export class TcrComponent {
   }
 
   closePopup(): void {
-    // Logic to close the popup goes here
+    // Logic to close the popup
     const popupSection = document.getElementById('popupSection1');
     if (popupSection) {
       popupSection.classList.add('hidden');
@@ -593,7 +590,7 @@ export class TcrComponent {
     }
   }
 
-  // sentmail
+  // sentmail and map
   @ViewChild('popupMailSection') popupMailSection: ElementRef | undefined;
 
   showPopupMail(): void {
@@ -620,8 +617,6 @@ export class TcrComponent {
     // Click occurred outside the popup
     const popupSection = document.getElementById(popupId);
     if (popupSection && !popupSection.contains(event.target as Node)) {
-      // Click occurred outside the popup
-
       popupSection.classList.add('hidden');
       this.cdr.detectChanges();
     }
@@ -649,7 +644,7 @@ export class TcrComponent {
       const currentDateTime = new Date(this.lasttxtime);
       currentDateTime.setMinutes(currentDateTime.getMinutes() + 1);
 
-      // Update lasttxtime with the new value
+      // Update lasttxtime with new value
       this.lasttxtime = this.datePipe.transform(
         currentDateTime,
         'yyyy-MM-ddTHH:mm:ss.SSSZ'
@@ -676,7 +671,7 @@ export class TcrComponent {
 
     this.map = new google.maps.Map(mapDiv, mapOptions);
 
-    // Add a click event listener to the map
+    // Add click event listener to the map
     google.maps.event.addListener(
       this.map,
       'click',
@@ -684,8 +679,6 @@ export class TcrComponent {
         this.updateMarker(event.latLng);
       }
     );
-
-    // Additional map features or functionality can be added here
   }
 
   onSearchKeydown(event: KeyboardEvent) {
@@ -721,12 +714,12 @@ export class TcrComponent {
   }
 
   private updateMarker(latLng: google.maps.LatLng) {
-    // Remove the previous marker if it exists
+    // Removing previous marker
     if (this.marker) {
       this.marker.setMap(null);
     }
 
-    // Create a new marker at the clicked location
+    // Creating new marker
     this.marker = new google.maps.Marker({
       position: latLng,
       map: this.map,
@@ -734,7 +727,7 @@ export class TcrComponent {
       animation: google.maps.Animation.DROP,
     });
 
-    // Update the latitude and longitude inputs
+    // Updating lat and long
     this.latitude = latLng.lat().toString();
     this.longitude = latLng.lng().toString();
   }
