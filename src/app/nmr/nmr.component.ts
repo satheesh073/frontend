@@ -1,14 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import axios from 'axios';
-declare var google: any;
 
 @Component({
   selector: 'app-nmr',
@@ -16,7 +9,7 @@ declare var google: any;
   styleUrls: ['./nmr.component.css'],
   providers: [DatePipe],
 })
-export class NmrComponent implements OnInit {
+export class NmrComponent {
   constructor(private cdr: ChangeDetectorRef, private datePipe: DatePipe) {}
   downloadJson: boolean = false;
 
@@ -714,25 +707,5 @@ export class NmrComponent implements OnInit {
       );
       this.cdr.detectChanges();
     }
-  }
-
-  // map
-  ngOnInit() {
-    this.initMap();
-  }
-
-  initMap() {
-    // Use the non-null assertion operator (!) to assert that getElementById will return a non-null value
-    const mapDiv = document.getElementById('yourMapDiv')! as HTMLElement;
-
-    const mapOptions = {
-      center: { lat: 0, lng: 0 }, // Set initial center coordinates
-      zoom: 8, // Set initial zoom level
-    };
-
-    // Create a new map instance
-    const map = new google.maps.Map(mapDiv, mapOptions);
-
-    // Add any additional map features or functionality here
   }
 }
