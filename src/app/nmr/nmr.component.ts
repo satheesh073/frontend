@@ -811,7 +811,39 @@ export class NmrComponent {
     // Additional map features or functionality can be added here
   }
 
-  onSearchClick() {
+  // onSearchClick() {
+  //   if (this.searchAddress && this.map) {
+  //     const geocoder = new google.maps.Geocoder();
+
+  //     geocoder.geocode(
+  //       { address: this.searchAddress },
+  //       (results: any, status: any) => {
+  //         if (status === google.maps.GeocoderStatus.OK) {
+  //           const location = results[0]?.geometry?.location;
+
+  //           if (location) {
+  //             this.map!.setCenter(location); // Non-null assertion operator
+  //             this.updateMarker(location);
+  //           } else {
+  //             alert('Location information not available.');
+  //           }
+  //         } else {
+  //           alert(
+  //             'Geocode was not successful for the following reason: ' + status
+  //           );
+  //         }
+  //       }
+  //     );
+  //   }
+  // }
+  // Inside your component class
+  onSearchKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.performSearch();
+    }
+  }
+
+  performSearch() {
     if (this.searchAddress && this.map) {
       const geocoder = new google.maps.Geocoder();
 

@@ -1577,8 +1577,8 @@
             [(ngModel)]="searchAddress"
             autocomplete="off"
             placeholder="Search"
+            (keydown)="onSearchKeydown($event)"
           />
-          <button (click)="onSearchClick()">Search</button>
         </div>
       </div>
       <div
