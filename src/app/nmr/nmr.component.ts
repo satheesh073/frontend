@@ -3,6 +3,8 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import axios from 'axios';
 
+declare var google: any;
+
 @Component({
   selector: 'app-nmr',
   templateUrl: './nmr.component.html',
@@ -707,5 +709,23 @@ export class NmrComponent {
       );
       this.cdr.detectChanges();
     }
+  }
+  ngOnInit() {
+    this.initMap();
+  }
+
+  initMap() {
+    // Use the non-null assertion operator (!) to assert that getElementById will return a non-null value
+    const mapDiv = document.getElementById('yourMapDiv')! as HTMLElement;
+
+    const mapOptions = {
+      center: { lat: 0, lng: 0 }, // Set initial center coordinates
+      zoom: 8, // Set initial zoom level
+    };
+
+    // Create a new map instance
+    const map = new google.maps.Map(mapDiv, mapOptions);
+
+    // Add any additional map features or functionality here
   }
 }
