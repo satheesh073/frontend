@@ -690,7 +690,6 @@ export class TcrComponent {
 
     this.map = new google.maps.Map(mapDiv, mapOptions);
 
-    // Get user's current location using Geolocation API
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -704,17 +703,17 @@ export class TcrComponent {
         },
         (error) => {
           console.error('Error getting current location:', error);
-          // Handle error, e.g., show a message to the user or use a default location
+          //To Handle error
           this.handleLocationError();
         }
       );
     } else {
       console.error('Geolocation is not supported by this browser.');
-      // Handle error, e.g., show a message to the user or use a default location
+      //To Handle error
       this.handleLocationError();
     }
 
-    // Add a click event listener to the map
+    // Click event listener for map
     google.maps.event.addListener(
       this.map,
       'click',
@@ -725,7 +724,7 @@ export class TcrComponent {
   }
 
   handleLocationError() {
-    // You can provide a default location or show a message to the user
+    // show pop up for default location
     const defaultLocation = new google.maps.LatLng(0, 0);
     this.map!.setCenter(defaultLocation);
     this.updateMarker(defaultLocation);
@@ -749,7 +748,7 @@ export class TcrComponent {
             const location = results[0]?.geometry?.location;
 
             if (location) {
-              this.map!.setCenter(location); // Non-null assertion operator
+              this.map!.setCenter(location);
               this.updateMarker(location);
             } else {
               alert('Location information not available.');
