@@ -720,15 +720,97 @@ export class NmrComponent {
     this.initMap();
   }
 
+  // initMap() {
+  //   const mapDiv = document.getElementById('nmrMapDiv')! as HTMLElement;
+
+  //   const mapOptions = {
+  //     center: { lat: 0, lng: 0 },
+  //     zoom: 8,
+  //   };
+
+  //   this.map = new google.maps.Map(mapDiv, mapOptions);
+
+  //   // Add a click event listener to the map
+  //   google.maps.event.addListener(
+  //     this.map,
+  //     'click',
+  //     (event: google.maps.MouseEvent) => {
+  //       this.updateMarker(event.latLng);
+  //     }
+  //   );
+  // }
+
+  // initMap() {
+  //   const mapDiv = document.getElementById('nmrMapDiv')! as HTMLElement;
+
+  //   const mapOptions = {
+  //     zoom: 8,
+  //   };
+
+  //   this.map = new google.maps.Map(mapDiv, mapOptions);
+
+  //   // Get user's current location using Geolocation API
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const userLatLng = new google.maps.LatLng(
+  //           position.coords.latitude,
+  //           position.coords.longitude
+  //         );
+
+  //         this.map!.setCenter(userLatLng);
+  //         this.updateMarker(userLatLng);
+  //       },
+  //       (error) => {
+  //         console.error('Error getting current location:', error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error('Geolocation is not supported by this browser.');
+  //   }
+
+  //   // Add a click event listener to the map
+  //   google.maps.event.addListener(
+  //     this.map,
+  //     'click',
+  //     (event: google.maps.MouseEvent) => {
+  //       this.updateMarker(event.latLng);
+  //     }
+  //   );
+  // }
+
   initMap() {
     const mapDiv = document.getElementById('nmrMapDiv')! as HTMLElement;
 
     const mapOptions = {
-      center: { lat: 0, lng: 0 },
       zoom: 8,
     };
 
     this.map = new google.maps.Map(mapDiv, mapOptions);
+
+    // Get user's current location using Geolocation API
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLatLng = new google.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          );
+
+          this.map!.setCenter(userLatLng);
+          this.updateMarker(userLatLng);
+        },
+        (error) => {
+          console.error('Error getting current location:', error);
+          // Handle error, e.g., show a message to the user or use a default location
+          this.handleLocationError();
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      // Handle error, e.g., show a message to the user or use a default location
+      this.handleLocationError();
+    }
 
     // Add a click event listener to the map
     google.maps.event.addListener(
@@ -738,6 +820,14 @@ export class NmrComponent {
         this.updateMarker(event.latLng);
       }
     );
+  }
+
+  handleLocationError() {
+    // You can provide a default location or show a message to the user
+    const defaultLocation = new google.maps.LatLng(0, 0);
+    this.map!.setCenter(defaultLocation);
+    this.updateMarker(defaultLocation);
+    alert('Unable to retrieve your location. Using default location.');
   }
 
   onSearchKeydown(event: KeyboardEvent) {

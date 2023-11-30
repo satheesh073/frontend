@@ -40,6 +40,9 @@ h2 {
 .search::placeholder {
   color: #023047;
 }
+.search1::placeholder {
+  color: #83c5be;
+}
 
 .rounded-image {
   border-radius: 50%;
