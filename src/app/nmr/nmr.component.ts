@@ -1,5 +1,11 @@
 /// <reference types="@types/googlemaps" />
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  ViewChild,
+  NgZone,
+} from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import axios from 'axios';
@@ -14,8 +20,13 @@ declare var google: any;
 })
 export class NmrComponent {
   searchAddress: string = '';
+  autocomplete: google.maps.places.Autocomplete | null = null;
 
-  constructor(private cdr: ChangeDetectorRef, private datePipe: DatePipe) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private datePipe: DatePipe,
+    private zone: NgZone
+  ) {}
   downloadJson: boolean = false;
 
   isPrimarySystemDropdownOpen = false;
@@ -851,13 +862,22 @@ export class NmrComponent {
             } else {
               alert('Location information not available.');
             }
+          } else if (status === google.maps.GeocoderStatus.ZERO_RESULTS) {
+            // Handle zero results, maybe show a message to the user
+            alert('No results found for the provided address.');
           } else {
+            // Handle other geocoding errors
             alert(
               'Geocode was not successful for the following reason: ' + status
             );
           }
         }
       );
+    } else {
+      // Use default location if location access is blocked
+      const defaultLocation = new google.maps.LatLng(0, 0);
+      this.map!.setCenter(defaultLocation);
+      this.updateMarker(defaultLocation);
     }
   }
 
@@ -884,5 +904,53 @@ export class NmrComponent {
     if (this.marker) {
       this.marker.setMap(null);
     }
+  }
+
+  // search update
+  ngAfterViewInit() {
+    // Initialize the autocomplete
+    this.initAutocomplete();
+  }
+
+  initAutocomplete() {
+    const input = document.getElementById('searchInput') as HTMLInputElement;
+
+    if (input && this.map) {
+      this.autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ['geocode'],
+      });
+
+      if (this.autocomplete && this.map) {
+        this.autocomplete.bindTo('bounds', this.map);
+      }
+
+      if (this.autocomplete) {
+        this.autocomplete.addListener('place_changed', () => {
+          this.zone.run(() => {
+            // Check if this.autocomplete is not null
+            if (this.autocomplete) {
+              const place = this.autocomplete.getPlace();
+
+              if (place.geometry) {
+                // Check if this.map is not null
+                if (this.map) {
+                  this.map!.setCenter(place.geometry.location);
+                  this.updateMarker(place.geometry.location);
+                }
+              } else {
+                alert('Location information not available.');
+              }
+            }
+          });
+        });
+      }
+    }
+  }
+
+  onInputChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+
+    console.log('Input changed:', inputValue);
   }
 }

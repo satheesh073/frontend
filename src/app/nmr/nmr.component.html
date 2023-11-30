@@ -1575,13 +1575,16 @@
       <div class="w-1/2 h-[4em]">
         <div class="relative flex">
           <input
+            #searchInput
             type="text"
             class="mt-3 mb-3 ml-10 font-semibold text-center text-black rounded-2xl cursor-text search1 search input"
             name="text"
             [(ngModel)]="searchAddress"
+            id="searchInput"
             autocomplete="off"
             placeholder="SEARCH"
             (keydown)="onSearchKeydown($event)"
+            (input)="onInputChange($event)"
           />
         </div>
         <div class="mt-[-3em] ml-[5em] left-12">
@@ -1630,7 +1633,8 @@
   <script
     async
     defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUYcrW3Hi4HbRQIAwDyeQeYsDKNIjBuF8&amp;callback=initMap"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUYcrW3Hi4HbRQIAwDyeQeYsDKNIjBuF8&amp&libraries=places;callback=initMap"
     type="text/javascript"
   ></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUYcrW3Hi4HbRQIAwDyeQeYsDKNIjBuF8&libraries=places"></script>
 </html>

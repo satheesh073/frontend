@@ -1475,9 +1475,11 @@
             class="mt-3 mb-3 ml-10 font-semibold text-center text-black rounded-2xl cursor-text search search1 input"
             name="text"
             [(ngModel)]="searchAddress"
+            id="searchInput"
             autocomplete="off"
             placeholder="SEARCH"
             (keydown)="onSearchKeydown($event)"
+            (input)="onInputChange($event)"
           />
         </div>
         <div class="mt-[-3em] ml-[5em] left-12">
