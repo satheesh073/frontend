@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
     const enteredPassword = prompt('Enter the password:');
 
     // Check if the entered password is correct
-    if (enteredPassword === '1234') {
+    if (enteredPassword === 'hydra2023') {
       this.password = enteredPassword;
       this.initializeApp();
     } else {
@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
   }
 
   isPasswordCorrect(): boolean {
-    return this.password === '1234';
+    return this.password === 'hydra2023';
   }
 
   selectAssetType(assetType: string) {
