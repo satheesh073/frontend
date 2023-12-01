@@ -953,4 +953,6 @@ export class NmrComponent {
 
     console.log('Input changed:', inputValue);
   }
+
+  // for side nav
 }

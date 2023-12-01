@@ -129,6 +129,7 @@
               (click)="closeDropdownIfOutside($event)"
             >
               <button
+                (click)="logout()"
                 class="p-4 text-lg transition-all font-semibold tracking-wider hover:border-white hover:text-white hover:bg-[#073b4c] text-[#073b4c] border-[#6B9080] background border-4 rounded-full w-52 pl-9 pr-9 logo"
               >
                 Log Out
@@ -259,7 +260,7 @@
         </div>
       </div>
     </section>
-    <!-- <app-nmr [hidden]="selectedAssetType === 'TCR'"></app-nmr> -->
+
     <app-nmr *ngIf="showNmrComponent"></app-nmr>
 
     <router-outlet></router-outlet>

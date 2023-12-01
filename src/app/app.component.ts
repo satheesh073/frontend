@@ -136,4 +136,17 @@ export class AppComponent implements OnInit {
       dropdown.classList.add('hidden');
     }
   }
+
+  logout(): void {
+    const confirmation = confirm('Are you sure you want to log out?');
+
+    if (confirmation) {
+      // Perform any additional logout logic if needed
+
+      alert('You logged out successfully');
+
+      // Show the password prompt after successful logout
+      this.showPasswordPrompt();
+    }
+  }
 }
