@@ -17,14 +17,43 @@ export class AppComponent implements OnInit {
   isDropdownOpen = false;
   selectedAssetType: string | null = null;
   showNmrComponent = true;
+  url: any;
+  password: string | null = null;
+  isPasswordPromptVisible = false;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     // Initialize showNmrComponent
     this.updateShowComponent(this.router.url);
+    this.showPasswordPrompt();
 
     //route to updating showNmrComponent
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.updateShowComponent(event.url);
+      }
+    });
+  }
+
+  showPasswordPrompt(): void {
+    const enteredPassword = prompt('Enter the password:');
+
+    // Check if the entered password is correct
+    if (enteredPassword === '1234') {
+      this.password = enteredPassword;
+      this.initializeApp();
+    } else {
+      alert('Incorrect password. Please refresh the page and try again.');
+      this.showPasswordPrompt();
+    }
+  }
+
+  initializeApp(): void {
+    // Initialize showNmrComponent
+    this.updateShowComponent(this.router.url);
+
+    // route to updating showNmrComponent
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateShowComponent(event.url);
@@ -38,21 +67,34 @@ export class AppComponent implements OnInit {
   }
 
   toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+    if (this.isPasswordCorrect()) {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    } else {
+      alert('Incorrect password. Please try again.');
+    }
+  }
+
+  isPasswordCorrect(): boolean {
+    return this.password === '1234';
   }
 
   selectAssetType(assetType: string) {
-    this.selectedAssetType = assetType;
-    this.isDropdownOpen = false;
+    if (this.isPasswordCorrect()) {
+      this.selectedAssetType = assetType;
+      this.isDropdownOpen = false;
 
-    if (assetType === 'NMR') {
-      this.router.navigate(['/nmr']);
-    } else if (assetType === 'TCR') {
-      this.router.navigate(['/tcr']);
+      if (assetType === 'NMR') {
+        this.router.navigate(['/nmr']);
+      } else if (assetType === 'TCR') {
+        this.router.navigate(['/tcr']);
+      } else {
+        this.router.navigate(['/default']);
+      }
     } else {
-      this.router.navigate(['/default']);
+      alert('Incorrect password. Please try again.');
     }
   }
+
   @ViewChild('notificationDropdown') notificationDropdown!: ElementRef;
   @ViewChild('dropdown') dropdown!: ElementRef<HTMLDivElement>;
 
