@@ -955,4 +955,48 @@ export class NmrComponent {
   }
 
   // for side nav
+  @ViewChild('Alert1') reeferModeSection!: ElementRef;
+  @ViewChild('constant') constantSection!: ElementRef;
+  @ViewChild('temperatureview') temperatureviewSection!: ElementRef;
+  @ViewChild('setoperation') setoperationSection!: ElementRef;
+  @ViewChild('supply') supplySection!: ElementRef;
+  @ViewChild('utilization') utilizationSection!: ElementRef;
+  @ViewChild('inventory') inventorySection!: ElementRef;
+  @ViewChild('alerts') alertsSection!: ElementRef;
+
+  // ...
+
+  scrollToSection(sectionId: string): void {
+    if (sectionId === 'Alert1' && this.reeferModeSection) {
+      this.reeferModeSection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    } else if (sectionId === 'constant' && this.constantSection) {
+      this.constantSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    } else if (sectionId === 'temperatureview' && this.temperatureviewSection) {
+      this.temperatureviewSection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    } else if (sectionId === 'setoperation' && this.setoperationSection) {
+      this.setoperationSection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    } else if (sectionId === 'supply' && this.supplySection) {
+      this.supplySection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    } else if (sectionId === 'utilization' && this.utilizationSection) {
+      this.utilizationSection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    } else if (sectionId === 'inventory' && this.inventorySection) {
+      this.inventorySection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    } else if (sectionId === 'alerts' && this.alertsSection) {
+      this.alertsSection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }
 }

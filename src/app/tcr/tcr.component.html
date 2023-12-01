@@ -16,51 +16,60 @@
       <div class="pb-5 pl-5 mt-20 border-b-2 border-black border-white">
         <div class="mb-5">
           <a
-            class="font-extrabold hover:text-[#cdb4db] text-white text-[22px] logo"
+            (click)="scrollToSection('constant')"
+            class="font-extrabold hover:text-[#cdb4db] cursor-pointer text-white text-[22px] logo"
             >Device Details</a
           >
         </div>
+
         <div class="mb-5">
           <a
-            class="font-extrabold hover:text-[#cdb4db] text-white text-[22px] logo"
-            >Supply</a
-          >
-        </div>
-        <div class="mb-5">
-          <a
-            class="font-extrabold hover:text-[#cdb4db] text-white text-[22px] logo"
+            (click)="scrollToSection('Alert1')"
+            class="font-extrabold hover:text-[#cdb4db] cursor-pointer text-white text-[22px] logo"
             >Reefer Mode</a
           >
         </div>
         <div class="mb-5">
           <a
-            class="font-extrabold hover:text-[#cdb4db] text-white text-[22px] logo"
+            (click)="scrollToSection('supply')"
+            class="font-extrabold hover:text-[#cdb4db] cursor-pointer text-white text-[22px] logo"
+            >Supply</a
+          >
+        </div>
+        <div class="mb-5">
+          <a
+            (click)="scrollToSection('inventory')"
+            class="font-extrabold hover:text-[#cdb4db] cursor-pointer text-white text-[22px] logo"
             >Inventory</a
           >
         </div>
         <div class="mb-5">
           <a
-            class="font-extrabold hover:text-[#cdb4db] text-white text-[22px] logo"
+            (click)="scrollToSection('setoperation')"
+            class="font-extrabold hover:text-[#cdb4db] cursor-pointer text-white text-[22px] logo"
             >Set Operation</a
           >
         </div>
 
         <div class="mb-5">
           <a
-            class="font-extrabold hover:text-[#cdb4db] text-white text-[22px] logo"
+            (click)="scrollToSection('temperatureview')"
+            class="font-extrabold hover:text-[#cdb4db] cursor-pointer text-white text-[22px] logo"
             >Temperature View</a
           >
         </div>
         <div class="mb-5">
           <a
-            class="font-extrabold hover:text-[#cdb4db] text-white pb-3 text-[22px] logo"
+            (click)="scrollToSection('common')"
+            class="font-extrabold hover:text-[#cdb4db] cursor-pointer text-white pb-3 text-[22px] logo"
             >Common</a
           >
         </div>
 
         <div class="mb-5">
           <a
-            class="font-extrabold hover:text-[#cdb4db] text-white text-[22px] logo"
+            (click)="scrollToSection('alerts')"
+            class="font-extrabold hover:text-[#cdb4db] cursor-pointer text-white text-[22px] logo"
             >Alerts</a
           >
         </div>
@@ -124,7 +133,7 @@
     </section>
     <!-- constant -->
 
-    <section class="ml-[17em] mt-4 container h-[23em]" id="constant1">
+    <section class="ml-[17em] mt-4 container h-[23em]" #constant id="constant">
       <div class="mt-4 ml-4">
         <h2 class="logo text-[25px] text-[#6B9080]">Device Details</h2>
         <div class="flex">
@@ -267,7 +276,11 @@
     </section>
 
     <!-- setmode  -->
-    <section class="ml-[17em] mt-4 container relative z-[1] pb-10" id="Alert1">
+    <section
+      class="ml-[17em] mt-4 container relative z-[1] pb-10"
+      #Alert1
+      id="Alert1"
+    >
       <h2 class="logo text-[25px] text-[#6B9080] pt-5 pl-5">Reefer Mode</h2>
       <div class="flex ml-[13em] z-[1]">
         <h3 class="logo text-[20px] mt-3 text-[#073b4c]">Set Mode :</h3>
@@ -357,7 +370,7 @@
 
     <!-- supply -->
 
-    <section class="ml-[17em] flex mt-4" id="supply1">
+    <section class="ml-[17em] flex mt-4" #supply1 id="supply1">
       <!-- supply  -->
 
       <section class="container relative w-1/2 pb-10 mr-5">
@@ -495,7 +508,11 @@
 
     <!-- Inventory -->
 
-    <section class="ml-[17em] mt-4 mb-4 container h-[12em]" id="inventory">
+    <section
+      class="ml-[17em] mt-4 mb-4 container h-[12em]"
+      #inventory
+      id="inventory"
+    >
       <div class="mt-4 ml-4">
         <h2 class="logo text-[25px] text-[#6B9080]">Inventory</h2>
         <div class="flex">
@@ -575,7 +592,11 @@
 
     <!-- Set Operation -->
 
-    <section class="ml-[17em] mt-4 container pb-14" id="setoperation">
+    <section
+      class="ml-[17em] mt-4 container pb-14"
+      #setoperation
+      id="setoperation"
+    >
       <div class="mt-4 ml-4">
         <h2 class="logo text-[25px] text-[#6B9080]">Set Operation</h2>
         <div class="flex mt-4">
@@ -640,7 +661,11 @@
 
     <!-- temperatureview  -->
 
-    <section class="ml-[17em] mt-4 container pb-14" id="temperatureview">
+    <section
+      class="ml-[17em] mt-4 container pb-14"
+      #temperatureview
+      id="temperatureview"
+    >
       <div class="mt-4 ml-4">
         <h2 class="logo text-[25px] ml-2 mt-3 text-[#6B9080]">
           Temperature View
@@ -791,7 +816,7 @@
 
     <!-- Common  -->
 
-    <section class="ml-[17em] mt-4 container pb-14" id="temperatureview">
+    <section class="ml-[17em] mt-4 container pb-14" #common id="common">
       <div class="mt-4 ml-4">
         <h2 class="logo text-[25px] ml-2 mt-3 text-[#6B9080]">Common</h2>
 
@@ -879,7 +904,11 @@
 
     <!-- Alert1  -->
 
-    <section class="ml-[17em] z-[0] mt-4 container relative pb-10" id="Alert">
+    <section
+      class="ml-[17em] z-[0] mt-4 container relative pb-10"
+      #alerts
+      id="Alert"
+    >
       <div class="mt-4 ml-4">
         <h2 class="logo text-[25px] text-[#6B9080]">Alert 1</h2>
         <div class="flex">
