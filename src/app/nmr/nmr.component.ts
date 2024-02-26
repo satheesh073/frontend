@@ -157,7 +157,7 @@ export class NmrComponent {
     // fear start
 
     const apiUrl =
-      'https://assetiq-dev.rt1cloud.com/reeferiq-api/device-gateway-messages/message-simulator';
+      'https://assetiq-test.rt1cloud.com/reeferiq-api/device-gateway-messages/message-simulator';
 
     // Define the requestData object
     const requestData = {

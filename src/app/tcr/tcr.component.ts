@@ -202,7 +202,7 @@ export class TcrComponent {
     console.log('Reversed Binary string for Alert 1:', binaryString1);
 
     const apiUrl =
-      'https://assetiq-dev.rt1cloud.com/reeferiq-api/device-gateway-messages/message-simulator';
+      'https://assetiq-test.rt1cloud.com/reeferiq-api/device-gateway-messages/message-simulator';
 
     // Define the requestData object
     const requestData = {
